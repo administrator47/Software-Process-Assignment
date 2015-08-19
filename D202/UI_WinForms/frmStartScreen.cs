@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace UI_WinForms
 {
-    public partial class Form1 : Form
+    public partial class frmStartScreen : Form
     {
-        public Form1()
+        public frmStartScreen()
         {//tester
             InitializeComponent();
         }
