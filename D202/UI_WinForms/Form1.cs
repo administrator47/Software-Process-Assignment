@@ -7,14 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CL_Application;
 
 namespace UI_WinForms
 {
     public partial class Form1 : Form
     {
         public Form1()
-        {//ertyetryrt..hjuybgujg
+        {//tester
             InitializeComponent();
         }
     }
