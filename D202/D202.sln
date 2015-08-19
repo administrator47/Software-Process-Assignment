@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI_WinForms", "UI_WinForms\UI_WinForms.csproj", "{F9E420F3-2D92-4B9B-B59A-282B62D2DC0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQL_Connect_Example", "..\..\..\..\Documents\Visual Studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\SQL_Connect_Example.csproj", "{814B27E2-20D2-4E9B-AC9E-243CE242932B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQL_Connect_Example", "SQL_Connect_Example\SQL_Connect_Example.csproj", "{814B27E2-20D2-4E9B-AC9E-243CE242932B}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{9D98BB69-36A4-43D1-91F4-BB214193BDD1}"
 EndProject
