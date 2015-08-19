@@ -33,7 +33,10 @@
             this.lbxLoad = new System.Windows.Forms.ListBox();
             this.btnLoadAll = new System.Windows.Forms.Button();
             this.gbxLoad = new System.Windows.Forms.GroupBox();
+            this.gbxPaperInfo = new System.Windows.Forms.GroupBox();
+            this.lblPaperName = new System.Windows.Forms.Label();
             this.gbxLoad.SuspendLayout();
+            this.gbxPaperInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLoadCategories
@@ -75,17 +78,39 @@
             this.gbxLoad.TabStop = false;
             this.gbxLoad.Enter += new System.EventHandler(this.gbxLoad_Enter);
             // 
+            // gbxPaperInfo
+            // 
+            this.gbxPaperInfo.BackColor = System.Drawing.Color.Transparent;
+            this.gbxPaperInfo.Controls.Add(this.lblPaperName);
+            this.gbxPaperInfo.Location = new System.Drawing.Point(543, 138);
+            this.gbxPaperInfo.Name = "gbxPaperInfo";
+            this.gbxPaperInfo.Size = new System.Drawing.Size(360, 277);
+            this.gbxPaperInfo.TabIndex = 4;
+            this.gbxPaperInfo.TabStop = false;
+            // 
+            // lblPaperName
+            // 
+            this.lblPaperName.AutoSize = true;
+            this.lblPaperName.Location = new System.Drawing.Point(133, 20);
+            this.lblPaperName.Name = "lblPaperName";
+            this.lblPaperName.Size = new System.Drawing.Size(66, 13);
+            this.lblPaperName.TabIndex = 0;
+            this.lblPaperName.Text = "Paper Name";
+            // 
             // frmStartScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(796, 435);
+            this.ClientSize = new System.Drawing.Size(968, 534);
+            this.Controls.Add(this.gbxPaperInfo);
             this.Controls.Add(this.gbxLoad);
             this.Name = "frmStartScreen";
             this.Text = "BICT Course Information";
             this.gbxLoad.ResumeLayout(false);
+            this.gbxPaperInfo.ResumeLayout(false);
+            this.gbxPaperInfo.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -96,6 +121,8 @@
         private System.Windows.Forms.ListBox lbxLoad;
         private System.Windows.Forms.Button btnLoadAll;
         private System.Windows.Forms.GroupBox gbxLoad;
+        private System.Windows.Forms.GroupBox gbxPaperInfo;
+        private System.Windows.Forms.Label lblPaperName;
     }
 }
 
