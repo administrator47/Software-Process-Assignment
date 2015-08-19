@@ -16,5 +16,10 @@ namespace UI_WinForms
         {//tester
             InitializeComponent();
         }
+
+        private void gbxLoad_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

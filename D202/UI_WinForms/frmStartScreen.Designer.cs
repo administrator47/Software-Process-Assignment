@@ -32,11 +32,13 @@
             this.btnLoadCategories = new System.Windows.Forms.Button();
             this.lbxLoad = new System.Windows.Forms.ListBox();
             this.btnLoadAll = new System.Windows.Forms.Button();
+            this.gbxLoad = new System.Windows.Forms.GroupBox();
+            this.gbxLoad.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLoadCategories
             // 
-            this.btnLoadCategories.Location = new System.Drawing.Point(12, 84);
+            this.btnLoadCategories.Location = new System.Drawing.Point(20, 34);
             this.btnLoadCategories.Name = "btnLoadCategories";
             this.btnLoadCategories.Size = new System.Drawing.Size(106, 23);
             this.btnLoadCategories.TabIndex = 0;
@@ -46,19 +48,32 @@
             // lbxLoad
             // 
             this.lbxLoad.FormattingEnabled = true;
-            this.lbxLoad.Location = new System.Drawing.Point(33, 125);
+            this.lbxLoad.Location = new System.Drawing.Point(20, 102);
             this.lbxLoad.Name = "lbxLoad";
             this.lbxLoad.Size = new System.Drawing.Size(171, 160);
             this.lbxLoad.TabIndex = 1;
             // 
             // btnLoadAll
             // 
-            this.btnLoadAll.Location = new System.Drawing.Point(124, 84);
+            this.btnLoadAll.Location = new System.Drawing.Point(148, 34);
             this.btnLoadAll.Name = "btnLoadAll";
             this.btnLoadAll.Size = new System.Drawing.Size(95, 23);
             this.btnLoadAll.TabIndex = 2;
             this.btnLoadAll.Text = "Load all Papers";
             this.btnLoadAll.UseVisualStyleBackColor = true;
+            // 
+            // gbxLoad
+            // 
+            this.gbxLoad.BackColor = System.Drawing.Color.Transparent;
+            this.gbxLoad.Controls.Add(this.lbxLoad);
+            this.gbxLoad.Controls.Add(this.btnLoadCategories);
+            this.gbxLoad.Controls.Add(this.btnLoadAll);
+            this.gbxLoad.Location = new System.Drawing.Point(24, 78);
+            this.gbxLoad.Name = "gbxLoad";
+            this.gbxLoad.Size = new System.Drawing.Size(270, 298);
+            this.gbxLoad.TabIndex = 3;
+            this.gbxLoad.TabStop = false;
+            this.gbxLoad.Enter += new System.EventHandler(this.gbxLoad_Enter);
             // 
             // frmStartScreen
             // 
@@ -67,11 +82,10 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(796, 435);
-            this.Controls.Add(this.btnLoadAll);
-            this.Controls.Add(this.lbxLoad);
-            this.Controls.Add(this.btnLoadCategories);
+            this.Controls.Add(this.gbxLoad);
             this.Name = "frmStartScreen";
             this.Text = "BICT Course Information";
+            this.gbxLoad.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -81,6 +95,7 @@
         private System.Windows.Forms.Button btnLoadCategories;
         private System.Windows.Forms.ListBox lbxLoad;
         private System.Windows.Forms.Button btnLoadAll;
+        private System.Windows.Forms.GroupBox gbxLoad;
     }
 }
 
