@@ -74,12 +74,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CL_Application\CL_Application.csproj">
-      <Project>{bdb8fd5a-d285-4be6-8e6a-a1ca676f6ba2}</Project>
-      <Name>CL_Application</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
