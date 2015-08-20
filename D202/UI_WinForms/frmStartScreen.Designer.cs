@@ -34,23 +34,23 @@
             this.btnLoadAll = new System.Windows.Forms.Button();
             this.gbxLoad = new System.Windows.Forms.GroupBox();
             this.gbxPaperInfo = new System.Windows.Forms.GroupBox();
+            this.lblPaperPrerequisite = new System.Windows.Forms.Label();
+            this.txtSemester = new System.Windows.Forms.TextBox();
+            this.lblSemester = new System.Windows.Forms.Label();
+            this.tbxPaperPrerequisite = new System.Windows.Forms.TextBox();
+            this.tbxCategory = new System.Windows.Forms.TextBox();
+            this.lblCategory = new System.Windows.Forms.Label();
+            this.gbxLecturer = new System.Windows.Forms.GroupBox();
+            this.tbxLecturerEmail = new System.Windows.Forms.TextBox();
+            this.tbxLecturerPhone = new System.Windows.Forms.TextBox();
+            this.tbxLecturerName = new System.Windows.Forms.TextBox();
+            this.lblLecturerInfo = new System.Windows.Forms.Label();
             this.tbxYear = new System.Windows.Forms.TextBox();
             this.lblYear = new System.Windows.Forms.Label();
             this.tbxDescription = new System.Windows.Forms.TextBox();
             this.lblDescription = new System.Windows.Forms.Label();
             this.tbxPaperName = new System.Windows.Forms.TextBox();
             this.lblPaperName = new System.Windows.Forms.Label();
-            this.lblLecturerInfo = new System.Windows.Forms.Label();
-            this.gbxLecturer = new System.Windows.Forms.GroupBox();
-            this.tbxLecturerName = new System.Windows.Forms.TextBox();
-            this.tbxLecturerPhone = new System.Windows.Forms.TextBox();
-            this.lblCategory = new System.Windows.Forms.Label();
-            this.tbxCategory = new System.Windows.Forms.TextBox();
-            this.tbxPaperPrerequisite = new System.Windows.Forms.TextBox();
-            this.tbxLecturerEmail = new System.Windows.Forms.TextBox();
-            this.lblSemester = new System.Windows.Forms.Label();
-            this.txtSemester = new System.Windows.Forms.TextBox();
-            this.lblPaperPrerequisite = new System.Windows.Forms.Label();
             this.btnModify = new System.Windows.Forms.Button();
             this.gbxLoad.SuspendLayout();
             this.gbxPaperInfo.SuspendLayout();
@@ -119,10 +119,114 @@
             this.gbxPaperInfo.TabStop = false;
             this.gbxPaperInfo.Enter += new System.EventHandler(this.gbxPaperInfo_Enter);
             // 
+            // lblPaperPrerequisite
+            // 
+            this.lblPaperPrerequisite.AutoSize = true;
+            this.lblPaperPrerequisite.Location = new System.Drawing.Point(119, 129);
+            this.lblPaperPrerequisite.Name = "lblPaperPrerequisite";
+            this.lblPaperPrerequisite.Size = new System.Drawing.Size(93, 13);
+            this.lblPaperPrerequisite.TabIndex = 14;
+            this.lblPaperPrerequisite.Text = "Paper Prerequisite";
+            this.lblPaperPrerequisite.Click += new System.EventHandler(this.label1_Click_1);
+            // 
+            // txtSemester
+            // 
+            this.txtSemester.Location = new System.Drawing.Point(285, 102);
+            this.txtSemester.Name = "txtSemester";
+            this.txtSemester.ReadOnly = true;
+            this.txtSemester.Size = new System.Drawing.Size(30, 20);
+            this.txtSemester.TabIndex = 13;
+            this.txtSemester.TextChanged += new System.EventHandler(this.txtSemester_TextChanged);
+            // 
+            // lblSemester
+            // 
+            this.lblSemester.AutoSize = true;
+            this.lblSemester.Location = new System.Drawing.Point(228, 105);
+            this.lblSemester.Name = "lblSemester";
+            this.lblSemester.Size = new System.Drawing.Size(51, 13);
+            this.lblSemester.TabIndex = 12;
+            this.lblSemester.Text = "Semester";
+            this.lblSemester.Click += new System.EventHandler(this.lblSemester_Click);
+            // 
+            // tbxPaperPrerequisite
+            // 
+            this.tbxPaperPrerequisite.Location = new System.Drawing.Point(122, 145);
+            this.tbxPaperPrerequisite.Name = "tbxPaperPrerequisite";
+            this.tbxPaperPrerequisite.ReadOnly = true;
+            this.tbxPaperPrerequisite.Size = new System.Drawing.Size(100, 20);
+            this.tbxPaperPrerequisite.TabIndex = 11;
+            this.tbxPaperPrerequisite.TextChanged += new System.EventHandler(this.tbxPaperPrerequisite_TextChanged);
+            // 
+            // tbxCategory
+            // 
+            this.tbxCategory.Location = new System.Drawing.Point(122, 76);
+            this.tbxCategory.Name = "tbxCategory";
+            this.tbxCategory.ReadOnly = true;
+            this.tbxCategory.Size = new System.Drawing.Size(193, 20);
+            this.tbxCategory.TabIndex = 9;
+            this.tbxCategory.TextChanged += new System.EventHandler(this.tbxCategory_TextChanged);
+            // 
+            // lblCategory
+            // 
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Location = new System.Drawing.Point(183, 60);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(49, 13);
+            this.lblCategory.TabIndex = 8;
+            this.lblCategory.Text = "Category";
+            this.lblCategory.Click += new System.EventHandler(this.lblCategory_Click);
+            // 
+            // gbxLecturer
+            // 
+            this.gbxLecturer.Controls.Add(this.tbxLecturerEmail);
+            this.gbxLecturer.Controls.Add(this.tbxLecturerPhone);
+            this.gbxLecturer.Controls.Add(this.tbxLecturerName);
+            this.gbxLecturer.Controls.Add(this.lblLecturerInfo);
+            this.gbxLecturer.Location = new System.Drawing.Point(320, 156);
+            this.gbxLecturer.Name = "gbxLecturer";
+            this.gbxLecturer.Size = new System.Drawing.Size(149, 131);
+            this.gbxLecturer.TabIndex = 7;
+            this.gbxLecturer.TabStop = false;
+            this.gbxLecturer.Enter += new System.EventHandler(this.gbxLecturer_Enter);
+            // 
+            // tbxLecturerEmail
+            // 
+            this.tbxLecturerEmail.Location = new System.Drawing.Point(24, 96);
+            this.tbxLecturerEmail.Name = "tbxLecturerEmail";
+            this.tbxLecturerEmail.ReadOnly = true;
+            this.tbxLecturerEmail.Size = new System.Drawing.Size(100, 20);
+            this.tbxLecturerEmail.TabIndex = 9;
+            // 
+            // tbxLecturerPhone
+            // 
+            this.tbxLecturerPhone.Location = new System.Drawing.Point(24, 70);
+            this.tbxLecturerPhone.Name = "tbxLecturerPhone";
+            this.tbxLecturerPhone.ReadOnly = true;
+            this.tbxLecturerPhone.Size = new System.Drawing.Size(100, 20);
+            this.tbxLecturerPhone.TabIndex = 8;
+            // 
+            // tbxLecturerName
+            // 
+            this.tbxLecturerName.Location = new System.Drawing.Point(24, 44);
+            this.tbxLecturerName.Name = "tbxLecturerName";
+            this.tbxLecturerName.ReadOnly = true;
+            this.tbxLecturerName.Size = new System.Drawing.Size(100, 20);
+            this.tbxLecturerName.TabIndex = 7;
+            // 
+            // lblLecturerInfo
+            // 
+            this.lblLecturerInfo.AutoSize = true;
+            this.lblLecturerInfo.Location = new System.Drawing.Point(21, 14);
+            this.lblLecturerInfo.Name = "lblLecturerInfo";
+            this.lblLecturerInfo.Size = new System.Drawing.Size(101, 13);
+            this.lblLecturerInfo.TabIndex = 6;
+            this.lblLecturerInfo.Text = "Lecturer Information";
+            // 
             // tbxYear
             // 
             this.tbxYear.Location = new System.Drawing.Point(154, 102);
             this.tbxYear.Name = "tbxYear";
+            this.tbxYear.ReadOnly = true;
             this.tbxYear.Size = new System.Drawing.Size(30, 20);
             this.tbxYear.TabIndex = 5;
             this.tbxYear.TextChanged += new System.EventHandler(this.tbxYear_TextChanged);
@@ -142,6 +246,7 @@
             this.tbxDescription.Location = new System.Drawing.Point(25, 203);
             this.tbxDescription.Multiline = true;
             this.tbxDescription.Name = "tbxDescription";
+            this.tbxDescription.ReadOnly = true;
             this.tbxDescription.Size = new System.Drawing.Size(274, 83);
             this.tbxDescription.TabIndex = 3;
             this.tbxDescription.TextChanged += new System.EventHandler(this.tbxDescription_TextChanged);
@@ -162,6 +267,7 @@
             // 
             this.tbxPaperName.Location = new System.Drawing.Point(122, 37);
             this.tbxPaperName.Name = "tbxPaperName";
+            this.tbxPaperName.ReadOnly = true;
             this.tbxPaperName.Size = new System.Drawing.Size(193, 20);
             this.tbxPaperName.TabIndex = 1;
             this.tbxPaperName.TextChanged += new System.EventHandler(this.tbxPaperName_TextChanged);
@@ -175,103 +281,6 @@
             this.lblPaperName.TabIndex = 0;
             this.lblPaperName.Text = "Paper Name";
             this.lblPaperName.Click += new System.EventHandler(this.lblPaperName_Click);
-            // 
-            // lblLecturerInfo
-            // 
-            this.lblLecturerInfo.AutoSize = true;
-            this.lblLecturerInfo.Location = new System.Drawing.Point(21, 14);
-            this.lblLecturerInfo.Name = "lblLecturerInfo";
-            this.lblLecturerInfo.Size = new System.Drawing.Size(101, 13);
-            this.lblLecturerInfo.TabIndex = 6;
-            this.lblLecturerInfo.Text = "Lecturer Information";
-            // 
-            // gbxLecturer
-            // 
-            this.gbxLecturer.Controls.Add(this.tbxLecturerEmail);
-            this.gbxLecturer.Controls.Add(this.tbxLecturerPhone);
-            this.gbxLecturer.Controls.Add(this.tbxLecturerName);
-            this.gbxLecturer.Controls.Add(this.lblLecturerInfo);
-            this.gbxLecturer.Location = new System.Drawing.Point(320, 156);
-            this.gbxLecturer.Name = "gbxLecturer";
-            this.gbxLecturer.Size = new System.Drawing.Size(149, 131);
-            this.gbxLecturer.TabIndex = 7;
-            this.gbxLecturer.TabStop = false;
-            this.gbxLecturer.Enter += new System.EventHandler(this.gbxLecturer_Enter);
-            // 
-            // tbxLecturerName
-            // 
-            this.tbxLecturerName.Location = new System.Drawing.Point(24, 44);
-            this.tbxLecturerName.Name = "tbxLecturerName";
-            this.tbxLecturerName.Size = new System.Drawing.Size(100, 20);
-            this.tbxLecturerName.TabIndex = 7;
-            // 
-            // tbxLecturerPhone
-            // 
-            this.tbxLecturerPhone.Location = new System.Drawing.Point(24, 70);
-            this.tbxLecturerPhone.Name = "tbxLecturerPhone";
-            this.tbxLecturerPhone.Size = new System.Drawing.Size(100, 20);
-            this.tbxLecturerPhone.TabIndex = 8;
-            // 
-            // lblCategory
-            // 
-            this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(183, 60);
-            this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(49, 13);
-            this.lblCategory.TabIndex = 8;
-            this.lblCategory.Text = "Category";
-            this.lblCategory.Click += new System.EventHandler(this.lblCategory_Click);
-            // 
-            // tbxCategory
-            // 
-            this.tbxCategory.Location = new System.Drawing.Point(122, 76);
-            this.tbxCategory.Name = "tbxCategory";
-            this.tbxCategory.Size = new System.Drawing.Size(193, 20);
-            this.tbxCategory.TabIndex = 9;
-            this.tbxCategory.TextChanged += new System.EventHandler(this.tbxCategory_TextChanged);
-            // 
-            // tbxPaperPrerequisite
-            // 
-            this.tbxPaperPrerequisite.Location = new System.Drawing.Point(122, 145);
-            this.tbxPaperPrerequisite.Name = "tbxPaperPrerequisite";
-            this.tbxPaperPrerequisite.Size = new System.Drawing.Size(100, 20);
-            this.tbxPaperPrerequisite.TabIndex = 11;
-            this.tbxPaperPrerequisite.TextChanged += new System.EventHandler(this.tbxPaperPrerequisite_TextChanged);
-            // 
-            // tbxLecturerEmail
-            // 
-            this.tbxLecturerEmail.Location = new System.Drawing.Point(24, 96);
-            this.tbxLecturerEmail.Name = "tbxLecturerEmail";
-            this.tbxLecturerEmail.Size = new System.Drawing.Size(100, 20);
-            this.tbxLecturerEmail.TabIndex = 9;
-            // 
-            // lblSemester
-            // 
-            this.lblSemester.AutoSize = true;
-            this.lblSemester.Location = new System.Drawing.Point(228, 105);
-            this.lblSemester.Name = "lblSemester";
-            this.lblSemester.Size = new System.Drawing.Size(51, 13);
-            this.lblSemester.TabIndex = 12;
-            this.lblSemester.Text = "Semester";
-            this.lblSemester.Click += new System.EventHandler(this.lblSemester_Click);
-            // 
-            // txtSemester
-            // 
-            this.txtSemester.Location = new System.Drawing.Point(285, 102);
-            this.txtSemester.Name = "txtSemester";
-            this.txtSemester.Size = new System.Drawing.Size(30, 20);
-            this.txtSemester.TabIndex = 13;
-            this.txtSemester.TextChanged += new System.EventHandler(this.txtSemester_TextChanged);
-            // 
-            // lblPaperPrerequisite
-            // 
-            this.lblPaperPrerequisite.AutoSize = true;
-            this.lblPaperPrerequisite.Location = new System.Drawing.Point(119, 129);
-            this.lblPaperPrerequisite.Name = "lblPaperPrerequisite";
-            this.lblPaperPrerequisite.Size = new System.Drawing.Size(93, 13);
-            this.lblPaperPrerequisite.TabIndex = 14;
-            this.lblPaperPrerequisite.Text = "Paper Prerequisite";
-            this.lblPaperPrerequisite.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // btnModify
             // 
