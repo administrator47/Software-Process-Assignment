@@ -10,6 +10,6 @@ namespace UI_WinForms.Classes
     {
         public List<Category> LoadCategories();
 
-        public List<Course>
+      
     }
 }

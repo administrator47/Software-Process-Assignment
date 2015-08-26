@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStartScreen));
             this.btnLoadCategories = new System.Windows.Forms.Button();
             this.lbxLoad = new System.Windows.Forms.ListBox();
-            this.btnLoadAll = new System.Windows.Forms.Button();
+            this.btnLoadCourses = new System.Windows.Forms.Button();
             this.gbxLoad = new System.Windows.Forms.GroupBox();
             this.gbxPaperInfo = new System.Windows.Forms.GroupBox();
             this.lblPaperPrerequisite = new System.Windows.Forms.Label();
@@ -76,27 +76,26 @@
             this.lbxLoad.TabIndex = 1;
             this.lbxLoad.SelectedIndexChanged += new System.EventHandler(this.lbxLoad_SelectedIndexChanged);
             // 
-            // btnLoadAll
+            // btnLoadCourses
             // 
-            this.btnLoadAll.Location = new System.Drawing.Point(148, 34);
-            this.btnLoadAll.Name = "btnLoadAll";
-            this.btnLoadAll.Size = new System.Drawing.Size(95, 23);
-            this.btnLoadAll.TabIndex = 2;
-            this.btnLoadAll.Text = "Load all Papers";
-            this.btnLoadAll.UseVisualStyleBackColor = true;
+            this.btnLoadCourses.Location = new System.Drawing.Point(148, 34);
+            this.btnLoadCourses.Name = "btnLoadCourses";
+            this.btnLoadCourses.Size = new System.Drawing.Size(95, 23);
+            this.btnLoadCourses.TabIndex = 2;
+            this.btnLoadCourses.Text = "Load all Papers";
+            this.btnLoadCourses.UseVisualStyleBackColor = true;
             // 
             // gbxLoad
             // 
             this.gbxLoad.BackColor = System.Drawing.Color.IndianRed;
             this.gbxLoad.Controls.Add(this.lbxLoad);
             this.gbxLoad.Controls.Add(this.btnLoadCategories);
-            this.gbxLoad.Controls.Add(this.btnLoadAll);
+            this.gbxLoad.Controls.Add(this.btnLoadCourses);
             this.gbxLoad.Location = new System.Drawing.Point(120, 108);
             this.gbxLoad.Name = "gbxLoad";
             this.gbxLoad.Size = new System.Drawing.Size(270, 298);
             this.gbxLoad.TabIndex = 3;
             this.gbxLoad.TabStop = false;
-            this.gbxLoad.Enter += new System.EventHandler(this.gbxLoad_Enter);
             // 
             // gbxPaperInfo
             // 
@@ -119,7 +118,6 @@
             this.gbxPaperInfo.Size = new System.Drawing.Size(491, 309);
             this.gbxPaperInfo.TabIndex = 4;
             this.gbxPaperInfo.TabStop = false;
-            this.gbxPaperInfo.Enter += new System.EventHandler(this.gbxPaperInfo_Enter);
             // 
             // lblPaperPrerequisite
             // 
@@ -129,7 +127,6 @@
             this.lblPaperPrerequisite.Size = new System.Drawing.Size(93, 13);
             this.lblPaperPrerequisite.TabIndex = 14;
             this.lblPaperPrerequisite.Text = "Paper Prerequisite";
-            this.lblPaperPrerequisite.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // txtSemester
             // 
@@ -138,7 +135,6 @@
             this.txtSemester.ReadOnly = true;
             this.txtSemester.Size = new System.Drawing.Size(30, 20);
             this.txtSemester.TabIndex = 13;
-            this.txtSemester.TextChanged += new System.EventHandler(this.txtSemester_TextChanged);
             // 
             // lblSemester
             // 
@@ -148,7 +144,6 @@
             this.lblSemester.Size = new System.Drawing.Size(51, 13);
             this.lblSemester.TabIndex = 12;
             this.lblSemester.Text = "Semester";
-            this.lblSemester.Click += new System.EventHandler(this.lblSemester_Click);
             // 
             // tbxPaperPrerequisite
             // 
@@ -157,7 +152,6 @@
             this.tbxPaperPrerequisite.ReadOnly = true;
             this.tbxPaperPrerequisite.Size = new System.Drawing.Size(100, 20);
             this.tbxPaperPrerequisite.TabIndex = 11;
-            this.tbxPaperPrerequisite.TextChanged += new System.EventHandler(this.tbxPaperPrerequisite_TextChanged);
             // 
             // tbxCategory
             // 
@@ -166,7 +160,6 @@
             this.tbxCategory.ReadOnly = true;
             this.tbxCategory.Size = new System.Drawing.Size(193, 20);
             this.tbxCategory.TabIndex = 9;
-            this.tbxCategory.TextChanged += new System.EventHandler(this.tbxCategory_TextChanged);
             // 
             // lblCategory
             // 
@@ -176,7 +169,6 @@
             this.lblCategory.Size = new System.Drawing.Size(49, 13);
             this.lblCategory.TabIndex = 8;
             this.lblCategory.Text = "Category";
-            this.lblCategory.Click += new System.EventHandler(this.lblCategory_Click);
             // 
             // gbxLecturer
             // 
@@ -189,7 +181,6 @@
             this.gbxLecturer.Size = new System.Drawing.Size(149, 131);
             this.gbxLecturer.TabIndex = 7;
             this.gbxLecturer.TabStop = false;
-            this.gbxLecturer.Enter += new System.EventHandler(this.gbxLecturer_Enter);
             // 
             // tbxLecturerEmail
             // 
@@ -231,7 +222,6 @@
             this.tbxYear.ReadOnly = true;
             this.tbxYear.Size = new System.Drawing.Size(30, 20);
             this.tbxYear.TabIndex = 5;
-            this.tbxYear.TextChanged += new System.EventHandler(this.tbxYear_TextChanged);
             // 
             // lblYear
             // 
@@ -241,7 +231,6 @@
             this.lblYear.Size = new System.Drawing.Size(29, 13);
             this.lblYear.TabIndex = 4;
             this.lblYear.Text = "Year";
-            this.lblYear.Click += new System.EventHandler(this.label1_Click);
             // 
             // tbxDescription
             // 
@@ -251,7 +240,6 @@
             this.tbxDescription.ReadOnly = true;
             this.tbxDescription.Size = new System.Drawing.Size(274, 83);
             this.tbxDescription.TabIndex = 3;
-            this.tbxDescription.TextChanged += new System.EventHandler(this.tbxDescription_TextChanged);
             // 
             // lblDescription
             // 
@@ -263,7 +251,6 @@
             this.lblDescription.Size = new System.Drawing.Size(91, 13);
             this.lblDescription.TabIndex = 2;
             this.lblDescription.Text = "Paper Description";
-            this.lblDescription.Click += new System.EventHandler(this.lblDescription_Click);
             // 
             // tbxPaperName
             // 
@@ -272,7 +259,6 @@
             this.tbxPaperName.ReadOnly = true;
             this.tbxPaperName.Size = new System.Drawing.Size(193, 20);
             this.tbxPaperName.TabIndex = 1;
-            this.tbxPaperName.TextChanged += new System.EventHandler(this.tbxPaperName_TextChanged);
             // 
             // lblPaperName
             // 
@@ -282,7 +268,6 @@
             this.lblPaperName.Size = new System.Drawing.Size(66, 13);
             this.lblPaperName.TabIndex = 0;
             this.lblPaperName.Text = "Paper Name";
-            this.lblPaperName.Click += new System.EventHandler(this.lblPaperName_Click);
             // 
             // btnModify
             // 
@@ -292,6 +277,7 @@
             this.btnModify.TabIndex = 5;
             this.btnModify.Text = "Modify";
             this.btnModify.UseVisualStyleBackColor = true;
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // frmStartScreen
             // 
@@ -318,7 +304,7 @@
 
         private System.Windows.Forms.Button btnLoadCategories;
         private System.Windows.Forms.ListBox lbxLoad;
-        private System.Windows.Forms.Button btnLoadAll;
+        private System.Windows.Forms.Button btnLoadCourses;
         private System.Windows.Forms.GroupBox gbxLoad;
         private System.Windows.Forms.GroupBox gbxPaperInfo;
         private System.Windows.Forms.Label lblPaperName;

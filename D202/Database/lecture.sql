@@ -4,12 +4,15 @@ go
 
 IF OBJECT_ID('course') IS NOT NULL
 DROP TABLE course
+GO	
 
 IF OBJECT_ID('category') IS NOT NULL
 DROP TABLE category
+GO
 
 IF OBJECT_ID('lecture') IS NOT NULL
 DROP TABLE lecture
+GO
 
 CREATE TABLE lecture(
 id varchar(10),
