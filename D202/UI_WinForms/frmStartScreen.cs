@@ -13,6 +13,8 @@ namespace UI_WinForms
 {
     public partial class frmStartScreen : Form
     {
+        Classes.Application app = new Classes.Application();
+
         public frmStartScreen()
         {//tester
             InitializeComponent();
@@ -20,15 +22,7 @@ namespace UI_WinForms
 
         private void btnLoadCategories_Click(object sender, EventArgs e)
         {
-            Classes.Application app = new Classes.Application();
-
-            List<Category> categoriesList = new List<Category>();
-
-            categoriesList = app.LoadCategories();
-
-            lbxLoad.Items.AddRange(categoriesList.ToArray());
-
-           
+            lbxLoad.Items.AddRange(app.LoadCategories());
         }
 
 
