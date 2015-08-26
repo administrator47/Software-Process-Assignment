@@ -59,6 +59,6 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="software.sql" />
+    <Build Include="lecture.sql" />
   </ItemGroup>
 </Project>
