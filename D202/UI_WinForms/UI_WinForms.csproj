@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Application.cs" />
     <Compile Include="Classes\Category.cs" />
     <Compile Include="Classes\Course.cs" />
     <Compile Include="Classes\Filter.cs" />
