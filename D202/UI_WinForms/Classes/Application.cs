@@ -8,6 +8,12 @@ namespace UI_WinForms.Classes
 {
     class Application
     {
+
+        public Application()
+        {
+
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -25,17 +31,24 @@ namespace UI_WinForms.Classes
             return categories.ToList<Category>();
         }
 
+        public List<Course> LoadCourses()
+        {
+            return new List<Course>();
+        }
 
-        //public List<Course> LoadCourses()
-        //{}
+        public List<Course> LoadCourses(Category category)
+        {
+            return new List<Course>();
+        }
 
-        //public List<Course> LoadCourses(Category category)
-        //{ }
+        public Course LockCourse(Course course)
+        {
+            return course;
+        }
 
-        //public Course LockCourse(Course course)
-        //{ }
+        public void UnlockCourse(Course course)
+        {
 
-        //public void UnlockCourse(Course course)
-        //{ }
+        }
     }
 }
