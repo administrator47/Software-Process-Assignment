@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI_WinForms.Classes;
 
 namespace UI_WinForms
 {
@@ -19,7 +20,13 @@ namespace UI_WinForms
 
         private void btnLoadCategories_Click(object sender, EventArgs e)
         {
+            Classes.Application app = new Classes.Application();
 
+            List<Category> categoriesList = new List<Category>();
+
+            categoriesList = app.LoadCategories();
+
+            lbxLoad.Items.AddRange(categoriesList.ToArray());
         }
 
 
