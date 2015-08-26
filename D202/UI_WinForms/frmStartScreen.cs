@@ -27,6 +27,8 @@ namespace UI_WinForms
             categoriesList = app.LoadCategories();
 
             lbxLoad.Items.AddRange(categoriesList.ToArray());
+
+           
         }
 
 

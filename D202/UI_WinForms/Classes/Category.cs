@@ -20,5 +20,10 @@ namespace UI_WinForms.Classes
             Name = name;
             Description = description;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
