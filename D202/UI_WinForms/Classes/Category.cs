@@ -13,5 +13,12 @@ namespace UI_WinForms.Classes
         public string Name { get; set; }
 
         public string Description { get; set; }
+
+        public Category(int id, string name, string description)
+        {
+            ID = id;
+            Name = name;
+            Description = description;
+        }
     }
 }
