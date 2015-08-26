@@ -74,6 +74,7 @@
             this.lbxLoad.Name = "lbxLoad";
             this.lbxLoad.Size = new System.Drawing.Size(171, 160);
             this.lbxLoad.TabIndex = 1;
+            this.lbxLoad.SelectedIndexChanged += new System.EventHandler(this.lbxLoad_SelectedIndexChanged);
             // 
             // btnLoadAll
             // 

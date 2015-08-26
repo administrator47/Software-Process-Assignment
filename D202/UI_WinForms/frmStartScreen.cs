@@ -101,5 +101,15 @@ namespace UI_WinForms
         {
 
         }
+
+        // If the user clicks a Category object then it loads the corresponding courses
+        // Else if Course object then load Course properties into the course info on the GUI
+        private void lbxLoad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+
     }
 }
