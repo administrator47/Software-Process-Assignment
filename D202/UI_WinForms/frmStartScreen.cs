@@ -64,9 +64,15 @@ namespace UI_WinForms
         // If selected item is a Course object then display course info
         private void lbxLoad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lbxLoad.SelectedItem.Equals("Category"))
-            {
 
+            var selectedItem = lbxLoad.SelectedItem;
+
+
+            if (selectedItem.GetType().ToString() == "UI_WinForms.Classes.Category")
+            {
+                Category itemSel = (Category)selectedItem;
+
+                tbxDescription.Text = itemSel.Description;
             }
         }
 
