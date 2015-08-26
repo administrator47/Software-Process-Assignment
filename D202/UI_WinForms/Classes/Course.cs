@@ -9,13 +9,18 @@ namespace UI_WinForms.Classes
 {
     class Course
     {
-        public int CourseID { get; set; }
+        public Course(int id, string name, Category category, Course prerequisite, Lecturer lecturer)
+        {
+            ID = id;
+            Name = name;
+            CourseCategory = category;
+            Prerequisite = prerequisite;
+            CourseLecturer = lecturer;
+        }
+
+        public int ID { get; set; }
 
         public string Name { get; set; }
-
-        public int Year { get; set; }
-
-        public int Semesters { get; set; }
 
         public Category CourseCategory { get; set; }
 

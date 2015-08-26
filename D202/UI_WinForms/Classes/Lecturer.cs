@@ -8,6 +8,15 @@ namespace UI_WinForms.Classes
 {
     class Lecturer
     {
+        public Lecturer(int id, string name, string gender, string phone, string email)
+        {
+            ID = id;
+            Name = name;
+            Gender = gender;
+            Phone = phone;
+            Email = email;
+        }
+
         /// <summary>
         /// Lecturer ID
         /// </summary>
@@ -26,7 +35,7 @@ namespace UI_WinForms.Classes
         /// <summary>
         /// Lecturer Phone
         /// </summary>
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         /// <summary>
         /// Lecturer Email
