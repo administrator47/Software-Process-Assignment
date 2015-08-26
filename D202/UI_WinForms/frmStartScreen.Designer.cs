@@ -65,6 +65,7 @@
             this.btnLoadCategories.TabIndex = 0;
             this.btnLoadCategories.Text = "Load Categories";
             this.btnLoadCategories.UseVisualStyleBackColor = true;
+            this.btnLoadCategories.Click += new System.EventHandler(this.btnLoadCategories_Click);
             // 
             // lbxLoad
             // 
