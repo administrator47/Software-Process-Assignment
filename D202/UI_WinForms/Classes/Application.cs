@@ -18,7 +18,7 @@ namespace UI_WinForms.Classes
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<Category> LoadCategories()
+        public Category[] LoadCategories()
         {
             // TODO: Stub
 
@@ -28,17 +28,17 @@ namespace UI_WinForms.Classes
                 new Category(3, "Category 3", "Description 3 Kia ora.. Rack off, this bloody hokey pokey is as mean as as a mint scarfie. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire."),
                 new Category(4, "Category 4", "Description 4 Kia ora.. Rack off, this bloody hokey pokey is as mean as as a mint scarfie. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire."),
             };
-            return categories.ToList<Category>();
+            return categories;
         }
 
-        public List<Course> LoadCourses()
+        public Course[] LoadCourses()
         {
-            return new List<Course>();
+            return new Course[0];
         }
 
-        public List<Course> LoadCourses(Category category)
+        public Course[] LoadCourses(Category category)
         {
-            return new List<Course>();
+            return new Course[0];
         }
 
         public Course LockCourse(Course course)
