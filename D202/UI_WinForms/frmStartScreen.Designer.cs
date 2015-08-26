@@ -52,6 +52,7 @@
             this.tbxPaperName = new System.Windows.Forms.TextBox();
             this.lblPaperName = new System.Windows.Forms.Label();
             this.btnModify = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.gbxLoad.SuspendLayout();
             this.gbxPaperInfo.SuspendLayout();
             this.gbxLecturer.SuspendLayout();
@@ -75,6 +76,7 @@
             this.lbxLoad.Size = new System.Drawing.Size(171, 160);
             this.lbxLoad.TabIndex = 1;
             this.lbxLoad.SelectedIndexChanged += new System.EventHandler(this.lbxLoad_SelectedIndexChanged);
+            this.lbxLoad.DoubleClick += new System.EventHandler(this.lbxLoad_DoubleClick);
             // 
             // btnLoadCourses
             // 
@@ -271,13 +273,24 @@
             // 
             // btnModify
             // 
-            this.btnModify.Location = new System.Drawing.Point(1067, 581);
+            this.btnModify.Location = new System.Drawing.Point(1054, 587);
             this.btnModify.Name = "btnModify";
-            this.btnModify.Size = new System.Drawing.Size(75, 23);
+            this.btnModify.Size = new System.Drawing.Size(97, 23);
             this.btnModify.TabIndex = 5;
             this.btnModify.Text = "Modify";
             this.btnModify.UseVisualStyleBackColor = true;
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(951, 587);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(97, 23);
+            this.btnSave.TabIndex = 6;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Visible = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // frmStartScreen
             // 
@@ -286,6 +299,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1155, 612);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnModify);
             this.Controls.Add(this.gbxPaperInfo);
             this.Controls.Add(this.gbxLoad);
@@ -325,6 +339,7 @@
         private System.Windows.Forms.Label lblLecturerInfo;
         private System.Windows.Forms.Label lblPaperPrerequisite;
         private System.Windows.Forms.Button btnModify;
+        private System.Windows.Forms.Button btnSave;
     }
 }
 
