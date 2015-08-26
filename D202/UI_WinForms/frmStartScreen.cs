@@ -96,5 +96,10 @@ namespace UI_WinForms
         {
 
         }
+
+        private void btnLoadCategories_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
