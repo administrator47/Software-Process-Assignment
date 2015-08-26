@@ -26,16 +26,16 @@ namespace UI_WinForms.Classes
         }
 
 
-        public List<Course> LoadCourses()
-        {}
+        //public List<Course> LoadCourses()
+        //{}
 
-        public List<Course> LoadCourses(Category category)
-        { }
+        //public List<Course> LoadCourses(Category category)
+        //{ }
 
-        public Course LockCourse(Course course)
-        { }
+        //public Course LockCourse(Course course)
+        //{ }
 
-        public void UnlockCourse(Course course)
-        { }
+        //public void UnlockCourse(Course course)
+        //{ }
     }
 }
