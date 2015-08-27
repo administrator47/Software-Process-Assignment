@@ -9,13 +9,15 @@ namespace UI_WinForms.Classes
 {
     class Course
     {
-        public Course(int id, string name, Category category, Course prerequisite, Lecturer lecturer)
+        public Course(int id, string name, Category category, Course prerequisite, Lecturer lecturer, bool compulsory, string description)
         {
             ID = id;
             Name = name;
             CourseCategory = category;
             Prerequisite = prerequisite;
             CourseLecturer = lecturer;
+            Compulsory = compulsory;
+            Description = description;
         }
 
         public int ID { get; set; }
@@ -27,6 +29,8 @@ namespace UI_WinForms.Classes
         public Course Prerequisite { get; set; }
 
         public Lecturer CourseLecturer { get; set; }
+
+        public bool Compulsory { get; set; }
 
         public string Description { get; set; }
     }
