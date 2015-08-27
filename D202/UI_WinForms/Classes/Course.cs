@@ -27,5 +27,7 @@ namespace UI_WinForms.Classes
         public Course Prerequisite { get; set; }
 
         public Lecturer CourseLecturer { get; set; }
+
+        public string Description { get; set; }
     }
 }
