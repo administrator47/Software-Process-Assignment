@@ -53,6 +53,8 @@
             this.lblPaperName = new System.Windows.Forms.Label();
             this.btnModify = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.tbxPaperID = new System.Windows.Forms.TextBox();
+            this.lblPaperID = new System.Windows.Forms.Label();
             this.gbxLoad.SuspendLayout();
             this.gbxPaperInfo.SuspendLayout();
             this.gbxLecturer.SuspendLayout();
@@ -102,6 +104,8 @@
             // gbxPaperInfo
             // 
             this.gbxPaperInfo.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.gbxPaperInfo.Controls.Add(this.lblPaperID);
+            this.gbxPaperInfo.Controls.Add(this.tbxPaperID);
             this.gbxPaperInfo.Controls.Add(this.lblPaperPrerequisite);
             this.gbxPaperInfo.Controls.Add(this.txtSemester);
             this.gbxPaperInfo.Controls.Add(this.lblSemester);
@@ -292,6 +296,24 @@
             this.btnSave.Visible = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // tbxPaperID
+            // 
+            this.tbxPaperID.Location = new System.Drawing.Point(383, 37);
+            this.tbxPaperID.Name = "tbxPaperID";
+            this.tbxPaperID.Size = new System.Drawing.Size(30, 20);
+            this.tbxPaperID.TabIndex = 15;
+            this.tbxPaperID.Visible = false;
+            // 
+            // lblPaperID
+            // 
+            this.lblPaperID.AutoSize = true;
+            this.lblPaperID.Location = new System.Drawing.Point(380, 16);
+            this.lblPaperID.Name = "lblPaperID";
+            this.lblPaperID.Size = new System.Drawing.Size(49, 13);
+            this.lblPaperID.TabIndex = 16;
+            this.lblPaperID.Text = "Paper ID";
+            this.lblPaperID.Visible = false;
+            // 
             // frmStartScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -340,6 +362,8 @@
         private System.Windows.Forms.Label lblPaperPrerequisite;
         private System.Windows.Forms.Button btnModify;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label lblPaperID;
+        private System.Windows.Forms.TextBox tbxPaperID;
     }
 }
 
