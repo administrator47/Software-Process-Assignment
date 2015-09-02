@@ -122,7 +122,7 @@ namespace UI_WinForms
                     tbxDescription.Text = courseOutput.Description;
                     tbxPaperName.Text = courseOutput.Name;
                     tbxCategory.Text = courseOutput.CourseCategory.ToString();
-                    tbxPaperPrerequisite.Text = courseOutput.Prerequisite.ToString();
+                    tbxPaperPrerequisite.Text = courseOutput.Prerequisite.Name;
 
 
                 }
