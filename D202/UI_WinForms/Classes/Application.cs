@@ -33,7 +33,10 @@ namespace UI_WinForms.Classes
 
         public Course[] LoadCourses()
         {
-            return new Course[0];
+            Course[] courses = {
+                new Course("A123", "Test Course", Category.FromID("A"), null, null, false, "Course Description");
+            };
+            return courses;
         }
 
         public Course[] LoadCourses(Category category)
