@@ -34,6 +34,8 @@
             this.btnLoadCourses = new System.Windows.Forms.Button();
             this.gbxLoad = new System.Windows.Forms.GroupBox();
             this.gbxPaperInfo = new System.Windows.Forms.GroupBox();
+            this.lblPaperID = new System.Windows.Forms.Label();
+            this.tbxPaperID = new System.Windows.Forms.TextBox();
             this.lblPaperPrerequisite = new System.Windows.Forms.Label();
             this.txtSemester = new System.Windows.Forms.TextBox();
             this.lblSemester = new System.Windows.Forms.Label();
@@ -53,8 +55,6 @@
             this.lblPaperName = new System.Windows.Forms.Label();
             this.btnModify = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.tbxPaperID = new System.Windows.Forms.TextBox();
-            this.lblPaperID = new System.Windows.Forms.Label();
             this.gbxLoad.SuspendLayout();
             this.gbxPaperInfo.SuspendLayout();
             this.gbxLecturer.SuspendLayout();
@@ -125,6 +125,24 @@
             this.gbxPaperInfo.Size = new System.Drawing.Size(491, 309);
             this.gbxPaperInfo.TabIndex = 4;
             this.gbxPaperInfo.TabStop = false;
+            // 
+            // lblPaperID
+            // 
+            this.lblPaperID.AutoSize = true;
+            this.lblPaperID.Location = new System.Drawing.Point(380, 16);
+            this.lblPaperID.Name = "lblPaperID";
+            this.lblPaperID.Size = new System.Drawing.Size(49, 13);
+            this.lblPaperID.TabIndex = 16;
+            this.lblPaperID.Text = "Paper ID";
+            this.lblPaperID.Visible = false;
+            // 
+            // tbxPaperID
+            // 
+            this.tbxPaperID.Location = new System.Drawing.Point(383, 37);
+            this.tbxPaperID.Name = "tbxPaperID";
+            this.tbxPaperID.Size = new System.Drawing.Size(30, 20);
+            this.tbxPaperID.TabIndex = 15;
+            this.tbxPaperID.Visible = false;
             // 
             // lblPaperPrerequisite
             // 
@@ -255,9 +273,9 @@
             this.lblDescription.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblDescription.Location = new System.Drawing.Point(22, 185);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(91, 13);
+            this.lblDescription.Size = new System.Drawing.Size(60, 13);
             this.lblDescription.TabIndex = 2;
-            this.lblDescription.Text = "Paper Description";
+            this.lblDescription.Text = "Description";
             // 
             // tbxPaperName
             // 
@@ -296,24 +314,6 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Visible = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // tbxPaperID
-            // 
-            this.tbxPaperID.Location = new System.Drawing.Point(383, 37);
-            this.tbxPaperID.Name = "tbxPaperID";
-            this.tbxPaperID.Size = new System.Drawing.Size(30, 20);
-            this.tbxPaperID.TabIndex = 15;
-            this.tbxPaperID.Visible = false;
-            // 
-            // lblPaperID
-            // 
-            this.lblPaperID.AutoSize = true;
-            this.lblPaperID.Location = new System.Drawing.Point(380, 16);
-            this.lblPaperID.Name = "lblPaperID";
-            this.lblPaperID.Size = new System.Drawing.Size(49, 13);
-            this.lblPaperID.TabIndex = 16;
-            this.lblPaperID.Text = "Paper ID";
-            this.lblPaperID.Visible = false;
             // 
             // frmStartScreen
             // 
