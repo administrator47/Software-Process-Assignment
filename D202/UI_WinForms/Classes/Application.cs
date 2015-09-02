@@ -3,11 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace UI_WinForms.Classes
 {
     class Application
     {
+        private static SqlConnection conn = null;
+
+        private static SqlConnection ConnectDB()
+        {
+            if (conn == null)
+            {
+                conn = new SqlConnection(
+                    "server=TFS;" +
+                    "database=study3;" +
+                    "Integrated Security=sspi"
+                );
+            }
+            return conn;
+        }
 
         public Application()
         {
@@ -23,10 +38,10 @@ namespace UI_WinForms.Classes
             // TODO: Stub
 
             Category[] categories = {
-                new Category("A", "Category 1", "Description 1 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire."),
-                new Category("B", "Category 2", "Description 2 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire."),
-                new Category("C", "Category 3", "Description 3 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire."),
-                new Category("D", "Category 4", "Description 4 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire."),
+                Category.FromID("A"),
+                Category.FromID("B"),
+                Category.FromID("C"),
+                Category.FromID("D"),
             };
             return categories;
         }
