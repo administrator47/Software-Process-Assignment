@@ -16,10 +16,11 @@ namespace UI_WinForms
         Classes.Application app = new Classes.Application();
 
         public frmStartScreen()
-        {//tester
+        {
             InitializeComponent();
         }
 
+        #region Load Category and Course
         private void btnLoadCategories_Click(object sender, EventArgs e)
         {
             // Items in the listbox are cleared
@@ -28,6 +29,17 @@ namespace UI_WinForms
             // Items are loaded into the listbox from the database
             lbxLoad.Items.AddRange(app.LoadCategories());
         }
+
+        private void btnLoadCourses_Click(object sender, EventArgs e)
+        {
+            // Items in the listbox are cleared
+            lbxLoad.Items.Clear();
+
+            // Items are loaded into the listbox from the database
+            lbxLoad.Items.AddRange(app.LoadCourses());
+        }
+        #endregion
+
 
         private void btnModify_Click(object sender, EventArgs e)
         {
@@ -163,17 +175,6 @@ namespace UI_WinForms
             }
 
         }
-
-        private void btnLoadCourses_Click(object sender, EventArgs e)
-        {
-            // Items in the listbox are cleared
-            lbxLoad.Items.Clear();
-
-            // Items are loaded into the listbox from the database
-            lbxLoad.Items.AddRange(app.LoadCourses());
-        }
-
-
 
     }
 }
