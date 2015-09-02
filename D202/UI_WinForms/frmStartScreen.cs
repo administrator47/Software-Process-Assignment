@@ -22,28 +22,38 @@ namespace UI_WinForms
 
         private void btnLoadCategories_Click(object sender, EventArgs e)
         {
+            // Items in the listbox are cleared
+            lbxLoad.Items.Clear();
+
+            // Items are loaded into the listbox from the database
             lbxLoad.Items.AddRange(app.LoadCategories());
         }
 
         private void btnModify_Click(object sender, EventArgs e)
         {
+            // If the Save button is visible then the user is clicking "Stop Modifying"
             if (btnSave.Visible)
             {
-                DialogResult msgbxResult = MessageBox.Show("Are you sure you want to stop modifying?", "Warning!", MessageBoxButtons.YesNo);
+                // Messagebox appears warning the user that they will lose progress if they press yes
+                DialogResult msgbxResult = MessageBox.Show("Are you sure you want to stop modifying? You will lose all progress?", "Warning!", MessageBoxButtons.YesNo);
 
+                // If the user presses yes..
                 if (msgbxResult.Equals(DialogResult.Yes))
                 {
-                    btnSave.Visible = false;
-                    btnModify.Text = "Modify";
+                    // Certain buttons are hidden
+                    ShowAndHide();
+
+                    // Reload category into information box
                 }
                
             }
 
+            // Else save button is not visible and the user is clicking "Modify"
             else
             {
-                // Makes the save button visible
-                btnSave.Visible = true;
-                btnModify.Text = "Stop Modifying";
+                // Certain buttons are shown
+                ShowAndHide();
+
             }
 
         }
@@ -58,24 +68,76 @@ namespace UI_WinForms
         // If selected item is a Course object then display course info
         private void lbxLoad_SelectedIndexChanged(object sender, EventArgs e)
         {
-                var itemSel = lbxLoad.SelectedItem as Category;
+            // Variable declared that will hold the object that the user has selected from the listbox
+            var itemSelected = lbxLoad.SelectedItem;
                 
-                if (itemSel != null)
+            // If statement to check what type of object the user has selected
+            // If user has clicked the list box whilst the categories are loaded into it..
+                if (itemSelected is Category)
                 {
-                    tbxDescription.Text = itemSel.Description;   
+                    // Category var declared and selected listbox item is loaded into it
+                    Category categoryOutput = (Category)itemSelected;
+
+                    // Contents are loaded into the information boxes 
+                    tbxDescription.Text = categoryOutput.Description;   
+                }
+            
+           // Else if the item selected in the listbox is Course
+                else if (itemSelected is Course)
+                {
+                    // Course var declared and selected listbox item is loaded into it
+                    Course categoryOutput = (Course)itemSelected;
+
+                    // Contents are loaded into the information boxes 
+                    tbxDescription.Text = categoryOutput.Description;   
                 }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            // Message box appears asking if the user wants to save their changes
             DialogResult msgbxResult = MessageBox.Show("Do you want to save your changes?", "Warning!", MessageBoxButtons.YesNo);
 
+            // If the user selects yes then..
             if (msgbxResult.Equals(DialogResult.Yes))
             {
-                btnSave.Visible = false;
-                btnModify.Text = "Modify";
+                // ShowAndHide method is called
+                ShowAndHide();
 
                 //SAVE CODE HERE
+            }
+
+        }
+
+        /// <summary>
+        /// Swaps between making certain objects on form visible and  invisible when they click the Modify and Save buttons.
+        /// </summary>
+        private void ShowAndHide()
+        {
+                 // If the Save Button is visible then...
+            if (btnSave.Visible)
+            {
+                // Make the save button invisible
+                btnSave.Visible = false;
+                // Change btnModify's text to "Modify"
+                btnModify.Text = "Modify";
+                // Label which says "Paper ID" is hidden
+                lblPaperID.Visible = false;
+                // Textbox which contains Paper ID is hidden
+                tbxPaperID.Visible = false;
+            }
+
+                // Else the save button is hidden..
+            else
+            {
+                // Makes the save button visible
+                btnSave.Visible = true;
+                // Changes btnModify's text to "Stop Modifying"
+                btnModify.Text = "Stop Modifying";
+                // lblPaperID is made visible
+                lblPaperID.Visible = true;
+                // tbxPaperID is made visible
+                tbxPaperID.Visible = true;
             }
 
         }
