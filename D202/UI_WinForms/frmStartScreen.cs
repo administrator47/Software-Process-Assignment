@@ -74,7 +74,23 @@ namespace UI_WinForms
         // If the user double clicks a Category object then it loads the corresponding courses
         private void lbxLoad_DoubleClick(object sender, EventArgs e)
         {
+            // Variable declared that will hold the object that the user has selected from the listbox
+            var itemSelected = lbxLoad.SelectedItem;
 
+            // If statement to check what type of object the user has selected
+            // If user has clicked the list box whilst the categories are loaded into it..
+            if (itemSelected is Category)
+            {
+                // Items in the listbox are cleared
+                lbxLoad.Items.Clear();
+
+                // Category object declared and initialized with itemselected
+                Category cat = (Category)itemSelected;
+
+                // Items are loaded into the listbox from the database
+                lbxLoad.Items.AddRange(app.LoadCourses(cat));
+            }
+            
         }
 
 
@@ -92,7 +108,8 @@ namespace UI_WinForms
                     Category categoryOutput = (Category)itemSelected;
 
                     // Contents are loaded into the information boxes 
-                    tbxDescription.Text = categoryOutput.Description;   
+                    tbxDescription.Text = categoryOutput.Description;
+                    tbxCategory.Text = categoryOutput.Name;
                 }
             
            // Else if the item selected in the listbox is Course
@@ -104,8 +121,8 @@ namespace UI_WinForms
                     // Contents are loaded into the information boxes 
                     tbxDescription.Text = courseOutput.Description;
                     tbxPaperName.Text = courseOutput.Name;
-                    //tbxCategory.Text = courseOutput.CourseCategory;
-                   // tbxPaperPrerequisite.Text = courseOutput.Compulsory;
+                    tbxCategory.Text = courseOutput.CourseCategory.ToString();
+                    tbxPaperPrerequisite.Text = courseOutput.Prerequisite.ToString();
 
 
                 }
