@@ -82,10 +82,15 @@ namespace UI_WinForms
                 else if (itemSelected is Course)
                 {
                     // Course var declared and selected listbox item is loaded into it
-                    Course categoryOutput = (Course)itemSelected;
+                    Course courseOutput = (Course)itemSelected;
 
                     // Contents are loaded into the information boxes 
-                    tbxDescription.Text = categoryOutput.Description;   
+                    tbxDescription.Text = courseOutput.Description;
+                    tbxPaperName.Text = courseOutput.Name;
+                    //tbxCategory.Text = courseOutput.CourseCategory;
+                   // tbxPaperPrerequisite.Text = courseOutput.Compulsory;
+
+
                 }
         }
 
