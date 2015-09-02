@@ -33,5 +33,10 @@ namespace UI_WinForms.Classes
         public bool Compulsory { get; set; }
 
         public string Description { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
