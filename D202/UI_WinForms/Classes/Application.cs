@@ -34,7 +34,8 @@ namespace UI_WinForms.Classes
         public Course[] LoadCourses()
         {
             Course[] courses = {
-                new Course("A123", "Test Course", Category.FromID("A"), null, null, false, "Course Description")
+                new Course("A123", "Test Course", Category.FromID("A"), null, null, false, "Course Description"),
+                new Course("B123", "Test Course", Category.FromID("B"), null, null, false, "Course Description")
             };
             return courses;
         }

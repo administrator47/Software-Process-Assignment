@@ -13,6 +13,7 @@ namespace UI_WinForms
 {
     public partial class frmStartScreen : Form
     {
+        // Public Application variable declared and initialized which will load Courses and Categories into the listbox
         Classes.Application app = new Classes.Application();
 
         public frmStartScreen()
