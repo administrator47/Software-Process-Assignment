@@ -49,15 +49,24 @@ namespace UI_WinForms.Classes
         public Course[] LoadCourses()
         {
             Course[] courses = {
-                new Course("A123", "Test Course", Category.FromID("A"), null, null, false, "Course Description"),
-                new Course("B123", "Test Course", Category.FromID("B"), null, null, false, "Course Description")
+                Course.FromID("A123"),
+                Course.FromID("A220"),
+                Course.FromID("B100"),
+                Course.FromID("C111"),
+                Course.FromID("B222"),
+                Course.FromID("D102"),
+                Course.FromID("D200")
             };
             return courses;
         }
 
         public Course[] LoadCourses(Category category)
         {
-            return LoadCourses();
+            return (
+                from course in LoadCourses()
+                where course.CourseCategory == category
+                select course
+            ).ToArray();
         }
 
         public Course LockCourse(Course course)

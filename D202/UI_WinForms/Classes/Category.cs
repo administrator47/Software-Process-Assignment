@@ -72,7 +72,7 @@ namespace UI_WinForms.Classes
             loaded = false;
         }
 
-        public Category(string id, string name, string description)
+        protected Category(string id, string name, string description)
         {
             categories[id] = this;
             fID = id;
@@ -83,10 +83,6 @@ namespace UI_WinForms.Classes
 
         public void Refresh()
         {
-                //new Category("A", "Category 1", "Description 1 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire."),
-                //new Category("B", "Category 2", "Description 2 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire."),
-                //new Category("C", "Category 3", "Description 3 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire."),
-                //new Category("D", "Category 4", "Description 4 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire."),
             switch (ID)
             {
                 case "A":
@@ -108,6 +104,7 @@ namespace UI_WinForms.Classes
                 default:
                     break;
             }
+            loaded = true;
         }
 
         public override string ToString()
