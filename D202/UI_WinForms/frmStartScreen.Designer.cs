@@ -88,6 +88,7 @@
             this.btnLoadCourses.TabIndex = 2;
             this.btnLoadCourses.Text = "Load all Papers";
             this.btnLoadCourses.UseVisualStyleBackColor = true;
+            this.btnLoadCourses.Click += new System.EventHandler(this.btnLoadCourses_Click);
             // 
             // gbxLoad
             // 
