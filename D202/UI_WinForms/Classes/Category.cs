@@ -32,7 +32,7 @@ namespace UI_WinForms.Classes
 
         public string Name { get; set; }
 
-        public string? Description { get; set; }
+        public string Description { get; set; }
 
         protected Category(string id)
         {
@@ -41,7 +41,7 @@ namespace UI_WinForms.Classes
             loaded = false;
         }
 
-        public Category(string id, string name, string? description)
+        public Category(string id, string name, string description)
         {
             ID = id;
             categories[id] = this;

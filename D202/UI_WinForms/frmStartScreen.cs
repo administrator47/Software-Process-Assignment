@@ -142,6 +142,15 @@ namespace UI_WinForms
 
         }
 
+        private void btnLoadCourses_Click(object sender, EventArgs e)
+        {
+            // Items in the listbox are cleared
+            lbxLoad.Items.Clear();
+
+            // Items are loaded into the listbox from the database
+            lbxLoad.Items.AddRange(app.LoadCourses());
+        }
+
 
 
     }
