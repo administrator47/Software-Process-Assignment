@@ -121,7 +121,14 @@ namespace UI_WinForms
                     tbxDescription.Text = courseOutput.Description;
                     tbxPaperName.Text = courseOutput.Name;
                     tbxCategory.Text = courseOutput.CourseCategory.ToString();
-                    tbxPaperPrerequisite.Text = courseOutput.Prerequisite.ToString();
+                  // NEED TO CHECK FOR NULL VALUE FIRST IF NULL DISPALY NONE
+                  //tbxPaperPrerequisite.Text = courseOutput.Prerequisite.ToString();
+                    //tbxLecturerName.Text = courseOutput.CourseLecturer.Name;
+                   // tbxLecturerPhone.Text = courseOutput.CourseLecturer.Phone.ToString();
+                  //  tbxLecturerEmail.Text = courseOutput.CourseLecturer.Email;
+                    tbxPaperID.Text = courseOutput.ID;
+                    tbxYear.Text = courseOutput.Compulsory.ToString();
+
 
 
                 }
