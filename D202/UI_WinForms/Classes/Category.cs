@@ -8,13 +8,13 @@ namespace UI_WinForms.Classes
 {
     class Category
     {
-        public int ID { get; set; }
+        public string ID { get; set; }
 
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        public Category(int id, string name, string description)
+        public Category(string id, string name, string description)
         {
             ID = id;
             Name = name;

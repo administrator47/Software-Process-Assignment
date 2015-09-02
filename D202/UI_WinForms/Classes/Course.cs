@@ -9,7 +9,7 @@ namespace UI_WinForms.Classes
 {
     class Course
     {
-        public Course(int id, string name, Category category, Course prerequisite, Lecturer lecturer, bool compulsory, string description)
+        public Course(string id, string name, Category category, Course prerequisite, Lecturer lecturer, bool compulsory, string description)
         {
             ID = id;
             Name = name;
@@ -20,7 +20,7 @@ namespace UI_WinForms.Classes
             Description = description;
         }
 
-        public int ID { get; set; }
+        public string ID { get; set; }
 
         public string Name { get; set; }
 
