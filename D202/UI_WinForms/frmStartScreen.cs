@@ -22,6 +22,10 @@ namespace UI_WinForms
 
         private void btnLoadCategories_Click(object sender, EventArgs e)
         {
+            // Items in the listbox are cleared
+            lbxLoad.Items.Clear();
+
+            // Items are loaded into the listbox from the database
             lbxLoad.Items.AddRange(app.LoadCategories());
         }
 
@@ -105,6 +109,9 @@ namespace UI_WinForms
 
         }
 
+        /// <summary>
+        /// Swaps between making certain objects on form visible and  invisible when they click the Modify and Save buttons.
+        /// </summary>
         private void ShowAndHide()
         {
                  // If the Save Button is visible then...
