@@ -41,7 +41,7 @@ namespace UI_WinForms.Classes
 
         public Course[] LoadCourses(Category category)
         {
-            return new Course[0];
+            return LoadCourses();
         }
 
         public Course LockCourse(Course course)
