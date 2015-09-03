@@ -30,9 +30,9 @@ namespace UI_WinForms.Classes
         }
 
         /// <summary>
-        /// 
+        /// Loads Categories of papers from the database
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Array containing all the Categories of the database</returns>
         public Category[] LoadCategories()
         {
             // TODO: Stub
@@ -46,6 +46,10 @@ namespace UI_WinForms.Classes
             return categories;
         }
 
+        /// <summary>
+        /// Loads all Courses from the database
+        /// </summary>
+        /// <returns>Array containing all Courses from the database</returns>
         public Course[] LoadCourses()
         {
             Course[] courses = {
@@ -60,8 +64,14 @@ namespace UI_WinForms.Classes
             return courses;
         }
 
+        /// <summary>
+        /// Loads all Courses from the database and sorts them by category param
+        /// </summary>
+        /// <param name="category">Category to sort by</param>
+        /// <returns>Array containing sorted Courses </returns>
         public Course[] LoadCourses(Category category)
         {
+            // Returns sorted Course objects in array
             return (
                 from course in LoadCourses()
                 where course.CourseCategory == category

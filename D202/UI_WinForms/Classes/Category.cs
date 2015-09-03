@@ -24,7 +24,7 @@ namespace UI_WinForms.Classes
             {
                 return null;
             }
-        }
+          }
 
         protected bool loaded = false;
 

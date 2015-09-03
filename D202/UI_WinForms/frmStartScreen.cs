@@ -41,7 +41,11 @@ namespace UI_WinForms
         }
         #endregion
 
-
+        /// <summary>
+        /// Makes the Course/Category information editable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModify_Click(object sender, EventArgs e)
         {
             // If the Save button is visible then the user is clicking "Stop Modifying"
@@ -66,7 +70,6 @@ namespace UI_WinForms
             {
                 // Certain buttons are shown
                 ShowAndHide();
-
             }
 
         }
@@ -122,7 +125,7 @@ namespace UI_WinForms
                     tbxDescription.Text = courseOutput.Description;
                     tbxPaperName.Text = courseOutput.Name;
                     tbxCategory.Text = courseOutput.CourseCategory.ToString();
-                    tbxPaperPrerequisite.Text = courseOutput.Prerequisite.Name;
+                    //tbxPaperPrerequisite.Text = courseOutput.Prerequisite.Name;
 
 
                 }
