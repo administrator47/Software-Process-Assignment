@@ -28,31 +28,86 @@ namespace UI_WinForms.Classes
 
         protected bool loaded = false;
 
-        public string ID { get; set; }
+        private string fID;
+        public string ID
+        {
+            get 
+            { 
+                return fID;
+            }
+        }
 
-        public string Name { get; set; }
+        private string fName;
+        public string Name {
+            get
+            {
+                if (!loaded) Refresh();
+                return fName;
+            }
+            set
+            {
+                fName = value;
+            }
+        }
 
-        public string Description { get; set; }
+        private string fDescription;
+
+        public string Description
+        {
+            get
+            {
+                if (!loaded) Refresh();
+                return fDescription;
+            }
+            set
+            {
+                fDescription = value;
+            }
+        }
 
         protected Category(string id)
         {
-            ID = id;
             categories[id] = this;
+            fID = id;
             loaded = false;
         }
 
         public Category(string id, string name, string description)
         {
-            ID = id;
             categories[id] = this;
-            Name = name;
-            Description = description;
+            fID = id;
+            fName = name;
+            fDescription = description;
             loaded = true;
         }
 
         public void Refresh()
         {
-
+                //new Category("A", "Category 1", "Description 1 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire."),
+                //new Category("B", "Category 2", "Description 2 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire."),
+                //new Category("C", "Category 3", "Description 3 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire."),
+                //new Category("D", "Category 4", "Description 4 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire."),
+            switch (ID)
+            {
+                case "A":
+                    fName = "Category A";
+                    fDescription = "Description 1 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire.";
+                    break;
+                case "B":
+                    fName = "Category B";
+                    fDescription = "Description 2 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire.";
+                    break;
+                case "C":
+                    fName = "Category C";
+                    fDescription = "Description 3 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire.";
+                    break;
+                case "D":
+                    fName = "Category D";
+                    fDescription = "Description 4 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire.";
+                    break;
+                default:
+                    break;
+            }
         }
 
         public override string ToString()
