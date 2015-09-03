@@ -26,7 +26,7 @@ namespace UI_WinForms.Classes
             }
         }
 
-        protected bool loaded = false;
+        private bool loaded = false;
 
         private string fID;
         public string ID

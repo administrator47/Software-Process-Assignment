@@ -27,14 +27,16 @@ namespace UI_WinForms.Classes
             }
         }
 
-        protected Course (string id)
+        protected bool loaded = false;
+
+        protected Course(string id)
         {
             courses[id] = this;
             fID = id;
-            loaded = false;
+            this.loaded = false;
         }
 
-        public Course(string id, string name, Category category, Course prerequisite, Lecturer lecturer, bool compulsory, string description)
+        protected Course(string id, string name, Category category, Course prerequisite, Lecturer lecturer, bool compulsory, string description)
         {
             courses[id] = this;
             fID = id;
@@ -44,9 +46,8 @@ namespace UI_WinForms.Classes
             fCourseLecturer = lecturer;
             fCompulsory = compulsory;
             fDescription = description;
+            this.loaded = true;
         }
-
-        protected bool loaded = false;
 
         private string fID;
         public string ID
