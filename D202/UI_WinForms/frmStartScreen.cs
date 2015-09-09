@@ -30,8 +30,6 @@ namespace UI_WinForms
             // Items are loaded into the listbox from the database
             lbxLoad.Items.AddRange(app.LoadCategories());
 
-            testsql testtest = new testsql();
-            testtest.sqlConnect();
         }
 
         private void btnLoadCourses_Click(object sender, EventArgs e)

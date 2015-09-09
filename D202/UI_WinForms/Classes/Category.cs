@@ -72,12 +72,21 @@ namespace UI_WinForms.Classes
             loaded = false;
         }
 
-        protected Category(string id, string name, string description)
+        //protected Category(string id, string name, string description)
+        //{
+        //    categories[id] = this;
+        //    fID = id;
+        //    fName = name;
+        //    fDescription = description;
+        //    loaded = true;
+        //}
+
+        public Category(string[] constructorArray)
         {
-            categories[id] = this;
-            fID = id;
-            fName = name;
-            fDescription = description;
+            categories[constructorArray[0]] = this;
+            fID = constructorArray[0];
+            fName = constructorArray[1];
+            fDescription = constructorArray[2];
             loaded = true;
         }
 

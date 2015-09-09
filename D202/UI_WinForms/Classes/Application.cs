@@ -36,13 +36,11 @@ namespace UI_WinForms.Classes
         public Category[] LoadCategories()
         {
             // TODO: Stub
+            DatabaseConnector dataConnect = new DatabaseConnector();
 
-            Category[] categories = {
-                Category.FromID("A"),
-                Category.FromID("B"),
-                Category.FromID("C"),
-                Category.FromID("D"),
-            };
+            Category[] categories = dataConnect.GetCategories();
+
+
             return categories;
         }
 
@@ -52,15 +50,12 @@ namespace UI_WinForms.Classes
         /// <returns>Array containing all Courses from the database</returns>
         public Course[] LoadCourses()
         {
-            Course[] courses = {
-                Course.FromID("A123"),
-                Course.FromID("A220"),
-                Course.FromID("B100"),
-                Course.FromID("C111"),
-                Course.FromID("B222"),
-                Course.FromID("D102"),
-                Course.FromID("D200")
-            };
+            // TODO: Stub
+            DatabaseConnector dataConnect = new DatabaseConnector();
+
+            Course[] courses = dataConnect.GetCourses();
+
+
             return courses;
         }
 
@@ -71,10 +66,12 @@ namespace UI_WinForms.Classes
         /// <returns>Array containing sorted Courses </returns>
         public Course[] LoadCourses(Category category)
         {
+            //Course[] courses = LoadCourses();
+            //return courses;
             // Returns sorted Course objects in array
             return (
                 from course in LoadCourses()
-                where course.CourseCategory == category
+                where course.CourseCategory == category.ID
                 select course
             ).ToArray();
         }
