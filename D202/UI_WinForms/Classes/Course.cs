@@ -155,7 +155,7 @@ namespace UI_WinForms.Classes
                     fCompulsory = true;
                     fDescription = "A slice of heaven. Bugger, this kiwi as morepork is as tip-top as a rip-off treaty. Mean while, in the marae, James and the Giant Peach and Manus Morissette were up to no good with a bunch of good as lamingtons. The tapu force of his making scones was on par with The Hungery Caterpilar's pretty suss Tui. Put the jug on will you bro, all these bloody slippers can wait till later. The first prize for cooking up a feed goes to... The Topp Twins.";
                     break;
-                case "A223":
+                case "A220":
                     fName = "Course 2";
                     fCourseCategory = Category.FromID("A");
                     fPrerequisite = Course.FromID("A123");
