@@ -9,6 +9,11 @@ namespace UI_WinForms.Classes
 {
     class Course : Table<Course>
     {
+        public new static string TableName()
+        {
+            return "course";
+        }
+
         public Course(string id)
             : base(id)
         { }
@@ -27,47 +32,11 @@ namespace UI_WinForms.Classes
             this.loaded = true;
         }
 
-        public static Course[] LoadIDs()
-        {
-            var result = new List<Course>();
-
-            var dr = ExecuteReader("select id from course", null);
-            try
-            {
-                while (dr.Read())
-                {
-                    var id = dr.GetString(0);
-                    result.Add(Course.FromID(id));
-                }
-            }
-            finally
-            {
-                dr.Close();
-            }
-
-            return result.ToArray<Course>();
-        }
-
         public static Course[] LoadIDs(Category category)
         {
-            var result = new List<Course>();
-
             object[] sql_params = { category.ID };
-            var dr = ExecuteReader("select id from course where category_id=@0", sql_params);
-            try
-            {
-                while (dr.Read())
-                {
-                    var id = dr.GetString(0);
-                    result.Add(Course.FromID(id));
-                }
-            }
-            finally
-            {
-                dr.Close();
-            }
-
-            return result.ToArray<Course>();
+            var dr = ExecuteReader(String.Format("select id from {0} where category_id=@0", TableName()), sql_params);
+            return LoadFromDataReader(dr);
         }
 
         private string fName;
@@ -185,7 +154,11 @@ namespace UI_WinForms.Classes
         public override void Refresh()
         {
             object[] sql_params = { ID };
-            var dr = ExecuteReader("select name, category_id, prerequisite, lecture_id, compulsory, description, year, semester from course where id=@0", sql_params);
+            var dr = ExecuteReader(String.Format(
+                "select name, category_id, prerequisite, lecture_id, compulsory, description, year, semester " +
+                "from {0} where id=@0",
+                TableName()
+            ), sql_params);
             try
             {
                 if (dr.HasRows)
@@ -200,6 +173,7 @@ namespace UI_WinForms.Classes
                     fYear = dr.GetInt32(6);
                     fSemester = dr.GetInt32(7);
                     loaded = true;
+                    dirty = false;
                 }
                 else
                 {
@@ -210,6 +184,38 @@ namespace UI_WinForms.Classes
             {
                 dr.Close();
             }
+        }
+
+        public override void Update()
+        {
+            if (!dirty) return;
+            base.Update();
+
+            object[] sql_params = { ID, Name, CourseCategory.ID, Prerequisite.ID, CourseLecturer.ID, Compulsory ? "Y" : "N", Description, Year, Semester };
+
+            string sql_query;
+            if (RecordedID == null)
+            {
+                sql_query = String.Format(
+                    "insert {0} " +
+                    "(id, name, category_id, prerequisite, lecture_id, compulsory, description, year, semester) " +
+                    "values ((@0, @1, @2, @3, @4, @5, @6, @7, @8))",
+                    TableName()
+                );
+            }
+            else
+            {
+                sql_query = String.Format(
+                    "update {0} " +
+                    "set name=@1, category_id=@2, prerequisite=@3, lecture_id=@4, compulsory=@5, description=@6, year=@7, semester=@8 " +
+                    "where id=@0",
+                    TableName()
+                );
+            }
+            ExecuteNonQuery(sql_query, sql_params);
+            fRecordedID = ID;
+            loaded = true;
+            dirty = false;
         }
 
         public override string ToString()

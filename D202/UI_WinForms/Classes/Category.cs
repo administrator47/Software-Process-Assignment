@@ -8,6 +8,11 @@ namespace UI_WinForms.Classes
 {
     class Category : Table<Category>
     {
+        public new static string TableName()
+        {
+            return "category";
+        }
+
         public Category(string id)
             : base(id)
         { }
@@ -18,27 +23,6 @@ namespace UI_WinForms.Classes
             fName = name;
             fDescription = description;
             loaded = true;
-        }
-
-        public static Category[] LoadIDs()
-        {
-            var result = new List<Category>();
-
-            var dr = ExecuteReader("select id from category", null);
-            try
-            {
-                while (dr.Read())
-                {
-                    var id = dr.GetString(0);
-                    result.Add(Category.FromID(id));
-                }
-            }
-            finally
-            {
-                dr.Close();
-            }
-
-            return result.ToArray<Category>();
         }
 
         private string fName;
@@ -72,7 +56,7 @@ namespace UI_WinForms.Classes
         public override void Refresh()
         {
             object[] sql_params = { ID };
-            var dr = ExecuteReader("select name, description from category where id=@0", sql_params);
+            var dr = ExecuteReader(String.Format("select name, description from {0} where id=@0", TableName()), sql_params);
             try
             {
                 if (dr.HasRows)
@@ -81,6 +65,7 @@ namespace UI_WinForms.Classes
                     fName = dr.GetString(0);
                     fDescription = dr.GetString(1);
                     loaded = true;
+                    dirty = false;
                 }
                 else
                 {
@@ -91,6 +76,28 @@ namespace UI_WinForms.Classes
             {
                 dr.Close();
             }
+        }
+
+        public override void Update()
+        {
+            if (!dirty) return;
+            base.Update();
+
+            object[] sql_params = { ID, Name, Description };
+
+            string sql_query;
+            if (RecordedID == null)
+            {
+                sql_query = String.Format("insert {0} (id, name, description) values ((@0, @1, @2))", TableName());
+            }
+            else
+            {
+                sql_query = String.Format("update {0} set name=@1, description=@2 where id=@0", TableName());
+            }
+            ExecuteNonQuery(sql_query, sql_params);
+            fRecordedID = ID;
+            loaded = true;
+            dirty = false;
         }
 
         public override string ToString()

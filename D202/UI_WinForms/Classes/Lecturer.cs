@@ -8,6 +8,11 @@ namespace UI_WinForms.Classes
 {
     class Lecturer: Table<Lecturer>
     {
+        public new static string TableName()
+        {
+            return "lecture";
+        }
+
         public Lecturer(string id)
             : base(id)
         { }
@@ -35,6 +40,7 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fName != value;
                 fName = value;
             }
         }
@@ -52,6 +58,7 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fGender != value;
                 fGender = value;
             }
         }
@@ -69,6 +76,7 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fPhone != value;
                 fPhone = value;
             }
         }
@@ -86,6 +94,7 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fEmail != value;
                 fEmail = value;
             }
         }
@@ -93,17 +102,19 @@ namespace UI_WinForms.Classes
         public override void Refresh()
         {
             object[] sql_params = { ID };
-            var dr = ExecuteReader("select name, gender, phone, email from lecture where id=@0", sql_params);
+            var dr = ExecuteReader(String.Format("select name, gender, phone, email from {0} where id=@0", TableName()), sql_params);
             try
             {
                 if (dr.HasRows)
                 {
                     dr.Read();
+                    fRecordedID = ID;
                     fName = dr.GetString(0);
                     fGender = dr.GetString(1);
                     fPhone = dr.GetString(2);
                     fEmail = dr.GetString(3);
                     loaded = true;
+                    dirty = false;
                 }
                 else
                 {
@@ -118,7 +129,24 @@ namespace UI_WinForms.Classes
 
         public override void Update()
         {
-            throw new NotImplementedException();
+            if (!dirty) return;
+            base.Update();
+
+            object[] sql_params = { ID, Name, Gender, Phone, Email };
+
+            string sql_query;
+            if (RecordedID == null)
+            {
+                sql_query = String.Format("insert {0} (id, name, gender, phone, email) values ((@0, @1, @2, @3, @4))", TableName());
+            }
+            else
+            {
+                sql_query = String.Format("update {0} set name=@1, gender=@2, phone=@3, email=@4 where id=@0", TableName());
+            }
+            ExecuteNonQuery(sql_query, sql_params);
+            fRecordedID = ID;
+            loaded = true;
+            dirty = false;
         }
     }
 }

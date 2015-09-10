@@ -55,12 +55,28 @@ namespace UI_WinForms.Classes
         protected bool loaded = false;
         protected bool dirty = false;
 
+        protected string fRecordedID;
+        public string RecordedID
+        {
+            get { return fRecordedID; }
+        }
+
         protected string fID;
+        protected virtual void SetID(string id)
+        {
+            fID = id;
+        }
+
         public string ID
         {
             get
             {
                 return fID;
+            }
+            set
+            {
+                dirty = dirty || fID != value;
+                SetID(value);
             }
         }
 
@@ -68,6 +84,7 @@ namespace UI_WinForms.Classes
         {
             loaded = false;
             dirty = false;
+            fRecordedID = null;
             fID = id;
         }
 
@@ -84,7 +101,7 @@ namespace UI_WinForms.Classes
 
     class Table<T>: Table where T: Table
     {
-        protected static Dictionary<string, Table> rows = new Dictionary<string, Table>(10);
+        private static Dictionary<string, Table> rows = new Dictionary<string, Table>(10);
      
         public static T FromID(string id)
         {
@@ -106,10 +123,54 @@ namespace UI_WinForms.Classes
             }
         }
 
+        public static string TableName()
+        {
+            // Which subclass is calling us?
+            Type t = typeof(T);
+
+            return (string) t.GetMethod("TableName").Invoke(null, null);
+        }
+
+        protected static T[] LoadFromDataReader(SqlDataReader dr)
+        {
+            var result = new List<T>();
+
+            try
+            {
+                while (dr.Read())
+                {
+                    var id = dr.GetString(0);
+                    T obj = Table<T>.FromID(id);
+                    (obj as Table<T>).fRecordedID = id;
+                    result.Add(obj);
+                }
+            }
+            finally
+            {
+                dr.Close();
+            }
+
+            return result.ToArray<T>();            
+        }
+
+        public static T[] LoadIDs()
+        {
+            var dr = ExecuteReader(String.Format("select id from {0}", TableName()), null);
+            return LoadFromDataReader(dr);
+        }
+
         public Table(string id)
             : base(id)
         {
             rows[id] = this;
+        }
+
+        protected override void SetID(string id)
+        {
+            var current_id = ID;
+            base.SetID(id);
+            rows.Remove(current_id);
+            rows.Add(id, this);
         }
 
         public override void Refresh()
@@ -119,7 +180,12 @@ namespace UI_WinForms.Classes
 
         public override void Update()
         {
-            throw new NotImplementedException();
+            if (dirty && RecordedID != null && RecordedID != ID)
+            {
+                object[] sql_params = { RecordedID, ID };
+                ExecuteNonQuery(String.Format("update {0} set id=@1 where id=@0", TableName()), sql_params);
+                fRecordedID = ID;
+            }
         }
     }
 }
