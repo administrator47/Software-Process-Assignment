@@ -13,7 +13,8 @@ namespace UI_WinForms.Classes
             : base(id)
         { }
 
-        protected Course(string id, string name, Category category, Course prerequisite, Lecturer lecturer, bool compulsory, string description) : this(id)
+        protected Course(string id, string name, Category category, Course prerequisite, Lecturer lecturer, bool compulsory, string description, int year, int semester)
+            : this(id)
         {
             fName = name;
             fCourseCategory = category;
@@ -21,6 +22,8 @@ namespace UI_WinForms.Classes
             fCourseLecturer = lecturer;
             fCompulsory = compulsory;
             fDescription = description;
+            fYear = year;
+            fSemester = semester;
             this.loaded = true;
         }
 
@@ -151,10 +154,38 @@ namespace UI_WinForms.Classes
             }
         }
 
+        private int fYear;
+        public int Year
+        {
+            get
+            {
+                if (!loaded) Refresh();
+                return fYear;
+            }
+            set
+            {
+                fYear = value;
+            }
+        }
+
+        private int fSemester;
+        public int Semester
+        {
+            get
+            {
+                if (!loaded) Refresh();
+                return fSemester;
+            }
+            set
+            {
+                fSemester = value;
+            }
+        }
+
         public override void Refresh()
         {
             object[] sql_params = { ID };
-            var dr = ExecuteReader("select name, category_id, prerequisite, lecture_id, compulsory, description from course where id=@0", sql_params);
+            var dr = ExecuteReader("select name, category_id, prerequisite, lecture_id, compulsory, description, year, semester from course where id=@0", sql_params);
             try
             {
                 if (dr.HasRows)
@@ -162,10 +193,12 @@ namespace UI_WinForms.Classes
                     dr.Read();
                     fName = dr.GetString(0);
                     fCourseCategory = Category.FromID(dr.GetString(1));
-                    if (! dr.IsDBNull(2)) fPrerequisite = Course.FromID(dr.GetString(2));
-                    if (! dr.IsDBNull(3)) fCourseLecturer = Lecturer.FromID(dr.GetString(3));
+                    if (!dr.IsDBNull(2)) fPrerequisite = Course.FromID(dr.GetString(2));
+                    if (!dr.IsDBNull(3)) fCourseLecturer = Lecturer.FromID(dr.GetString(3));
                     fCompulsory = (dr.GetString(4).ToUpper()[0] == 'Y');
                     fDescription = dr.GetString(5);
+                    fYear = dr.GetInt32(6);
+                    fSemester = dr.GetInt32(7);
                     loaded = true;
                 }
                 else

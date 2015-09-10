@@ -56,9 +56,9 @@ namespace UI_WinForms.Classes
                     {
                         string[] dataRow = ReadSingleRow((IDataRecord)reader);
 
-                        Course courseHolder = new Course(dataRow);
+                        //Course courseHolder = new Course(dataRow);
 
-                        holder.Add(courseHolder);              
+                        //holder.Add(courseHolder);              
                     }
                 }
             }
@@ -91,9 +91,9 @@ namespace UI_WinForms.Classes
                     {
                         string[] dataRow = ReadSingleRow((IDataRecord)reader);
 
-                        Category courseHolder = new Category(dataRow);
+                        //Category courseHolder = new Category(dataRow);
 
-                        holder.Add(courseHolder);
+                        //holder.Add(courseHolder);
                     }
                 }
             }
