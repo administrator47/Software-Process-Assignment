@@ -7,39 +7,14 @@ using System.Threading.Tasks;
 
 namespace UI_WinForms.Classes
 {
-    class Course
+    class Course : Table<Course>
     {
-        protected static Dictionary<string, Course> courses = new Dictionary<string, Course>(10);
+        public Course(string id)
+            : base(id)
+        { }
 
-        public static Course FromID(string id)
+        protected Course(string id, string name, Category category, Course prerequisite, Lecturer lecturer, bool compulsory, string description) : this(id)
         {
-            try
-            {
-                return courses[id];
-            }
-            catch (KeyNotFoundException)
-            {
-                return new Course(id);
-            }
-            catch (ArgumentNullException)
-            {
-                return null;
-            }
-        }
-
-        protected bool loaded = false;
-
-        protected Course(string id)
-        {
-            courses[id] = this;
-            fID = id;
-            this.loaded = false;
-        }
-
-        protected Course(string id, string name, Category category, Course prerequisite, Lecturer lecturer, bool compulsory, string description)
-        {
-            courses[id] = this;
-            fID = id;
             fName = name;
             fCourseCategory = category;
             fPrerequisite = prerequisite;
@@ -49,13 +24,47 @@ namespace UI_WinForms.Classes
             this.loaded = true;
         }
 
-        private string fID;
-        public string ID
+        public static Course[] LoadIDs()
         {
-            get
+            var result = new List<Course>();
+
+            var dr = ExecuteReader("select id from course", null);
+            try
             {
-                return fID;
+                while (dr.Read())
+                {
+                    var id = dr.GetString(0);
+                    result.Add(Course.FromID(id));
+                }
             }
+            finally
+            {
+                dr.Close();
+            }
+
+            return result.ToArray<Course>();
+        }
+
+        public static Course[] LoadIDs(Category category)
+        {
+            var result = new List<Course>();
+
+            object[] sql_params = { category.ID };
+            var dr = ExecuteReader("select id from course where category_id=@0", sql_params);
+            try
+            {
+                while (dr.Read())
+                {
+                    var id = dr.GetString(0);
+                    result.Add(Course.FromID(id));
+                }
+            }
+            finally
+            {
+                dr.Close();
+            }
+
+            return result.ToArray<Course>();
         }
 
         private string fName;
@@ -73,7 +82,6 @@ namespace UI_WinForms.Classes
         }
 
         private string fDescription;
-
         public string Description
         {
             get
@@ -143,70 +151,32 @@ namespace UI_WinForms.Classes
             }
         }
 
-        public void Refresh()
+        public override void Refresh()
         {
-            switch (ID)
+            object[] sql_params = { ID };
+            var dr = ExecuteReader("select name, category_id, prerequisite, lecture_id, compulsory, description from course where id=@0", sql_params);
+            try
             {
-                case "A123":
-                    fName = "Course 1";
-                    fCourseCategory = Category.FromID("A");
-                    fPrerequisite = null;
-                    fCourseLecturer = Lecturer.FromID("L1");
-                    fCompulsory = true;
-                    fDescription = "A slice of heaven. Bugger, this kiwi as morepork is as tip-top as a rip-off treaty. Mean while, in the marae, James and the Giant Peach and Manus Morissette were up to no good with a bunch of good as lamingtons. The tapu force of his making scones was on par with The Hungery Caterpilar's pretty suss Tui. Put the jug on will you bro, all these bloody slippers can wait till later. The first prize for cooking up a feed goes to... The Topp Twins.";
-                    break;
-                case "A220":
-                    fName = "Course 2";
-                    fCourseCategory = Category.FromID("A");
-                    fPrerequisite = Course.FromID("A123");
-                    fCourseLecturer = Lecturer.FromID("L1");
-                    fCompulsory = false;
-                    fDescription = "Technology has allowed paru Undie 500s to participate in the global conversation of nuclear-free kais. The next Generation of cracker manuses have already skived off over at the sausage sizzle. What's the hurry Fred Dagg?";
-                    break;
-                case "B100":
-                    fName = "Course 3";
-                    fCourseCategory = Category.FromID("B");
-                    fPrerequisite = null;
-                    fCourseLecturer = Lecturer.FromID("L2");
-                    fCompulsory = true;
-                    fDescription = "The mean as force of his whinging was on par with Maui's chronic piece of pounamu. Put the jug on will you bro, all these snarky jerseys can wait till later. The first prize for munting goes to... Helen Clarke and his carked it Grandpa's slipper, what a dole bludger.";
-                    break;
-                case "B222":
-                    fName = "Course 4";
-                    fCourseCategory = Category.FromID("B");
-                    fPrerequisite = Course.FromID("B100");
-                    fCourseLecturer = Lecturer.FromID("L1");
-                    fCompulsory = true;
-                    fDescription = "";
-                    break;
-                case "C111":
-                    fName = "Course 5";
-                    fCourseCategory = Category.FromID("C");
-                    fPrerequisite = null;
-                    fCourseLecturer = Lecturer.FromID("L2");
-                    fCompulsory = true;
-                    fDescription = "";
-                    break;
-                case "D102":
-                    fName = "Course 6";
-                    fCourseCategory = Category.FromID("D");
-                    fPrerequisite = null;
-                    fCourseLecturer = Lecturer.FromID("L1");
-                    fCompulsory = true;
-                    fDescription = "";
-                    break;
-                case "D200":
-                    fName = "Course 7";
-                    fCourseCategory = Category.FromID("D");
-                    fPrerequisite = Course.FromID("D102");
-                    fCourseLecturer = Lecturer.FromID("L2");
-                    fCompulsory = false;
-                    fDescription = "";
-                    break;
-                default:
-                    break;
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    fName = dr.GetString(0);
+                    fCourseCategory = Category.FromID(dr.GetString(1));
+                    if (! dr.IsDBNull(2)) fPrerequisite = Course.FromID(dr.GetString(2));
+                    if (! dr.IsDBNull(3)) fCourseLecturer = Lecturer.FromID(dr.GetString(3));
+                    fCompulsory = (dr.GetString(4).ToUpper()[0] == 'Y');
+                    fDescription = dr.GetString(5);
+                    loaded = true;
+                }
+                else
+                {
+                    throw new System.Data.RowNotInTableException("No row with id=" + ID);
+                }
             }
-            loaded = true;
+            finally
+            {
+                dr.Close();
+            }
         }
 
         public override string ToString()

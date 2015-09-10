@@ -6,35 +6,39 @@ using System.Threading.Tasks;
 
 namespace UI_WinForms.Classes
 {
-    class Category
+    class Category : Table<Category>
     {
-        protected static Dictionary<string, Category> categories = new Dictionary<string, Category>(10);
+        public Category(string id)
+            : base(id)
+        { }
 
-        public static Category FromID(string id)
+        protected Category(string id, string name, string description) 
+            : this (id)
         {
+            fName = name;
+            fDescription = description;
+            loaded = true;
+        }
+
+        public static Category[] LoadIDs()
+        {
+            var result = new List<Category>();
+
+            var dr = ExecuteReader("select id from category", null);
             try
             {
-                return categories[id];
+                while (dr.Read())
+                {
+                    var id = dr.GetString(0);
+                    result.Add(Category.FromID(id));
+                }
             }
-            catch (KeyNotFoundException)
+            finally
             {
-                return new Category(id);
+                dr.Close();
             }
-            catch (ArgumentNullException)
-            {
-                return null;
-            }
-          }
 
-        private bool loaded = false;
-
-        private string fID;
-        public string ID
-        {
-            get 
-            { 
-                return fID;
-            }
+            return result.ToArray<Category>();
         }
 
         private string fName;
@@ -65,46 +69,28 @@ namespace UI_WinForms.Classes
             }
         }
 
-        protected Category(string id)
+        public override void Refresh()
         {
-            categories[id] = this;
-            fID = id;
-            loaded = false;
-        }
-
-        protected Category(string id, string name, string description)
-        {
-            categories[id] = this;
-            fID = id;
-            fName = name;
-            fDescription = description;
-            loaded = true;
-        }
-
-        public void Refresh()
-        {
-            switch (ID)
+            object[] sql_params = { ID };
+            var dr = ExecuteReader("select name, description from category where id=@0", sql_params);
+            try
             {
-                case "A":
-                    fName = "Category A";
-                    fDescription = "Description 1 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire.";
-                    break;
-                case "B":
-                    fName = "Category B";
-                    fDescription = "Description 2 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire.";
-                    break;
-                case "C":
-                    fName = "Category C";
-                    fDescription = "Description 3 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire.";
-                    break;
-                case "D":
-                    fName = "Category D";
-                    fDescription = "Description 4 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire.";
-                    break;
-                default:
-                    break;
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    fName = dr.GetString(0);
+                    fDescription = dr.GetString(1);
+                    loaded = true;
+                }
+                else
+                {
+                    throw new System.Data.RowNotInTableException("No row with id=" + ID);
+                }
             }
-            loaded = true;
+            finally
+            {
+                dr.Close();
+            }
         }
 
         public override string ToString()

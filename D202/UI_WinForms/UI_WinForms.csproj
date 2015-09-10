@@ -50,6 +50,7 @@
     <Compile Include="Classes\Filter.cs" />
     <Compile Include="Classes\Lecturer.cs" />
     <Compile Include="Classes\Student.cs" />
+    <Compile Include="Classes\Table.cs" />
     <Compile Include="frmStartScreen.cs">
       <SubType>Form</SubType>
     </Compile>

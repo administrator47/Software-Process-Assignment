@@ -6,57 +6,20 @@ using System.Threading.Tasks;
 
 namespace UI_WinForms.Classes
 {
-    class Lecturer
+    class Lecturer: Table<Lecturer>
     {
-        protected static Dictionary<string, Lecturer> lecturers = new Dictionary<string, Lecturer>(10);
-
-        public static Lecturer FromID(string id)
-        {
-            try
-            {
-                return lecturers[id];
-            }
-            catch (KeyNotFoundException)
-            {
-                return new Lecturer(id);
-            }
-            catch (ArgumentNullException)
-            {
-                return null;
-            }
-        }
-
-        protected bool loaded = false;
-
-        protected Lecturer(string id)
-        {
-            lecturers[id] = this;
-            fID = id;
-            loaded = false;
-        }
+        public Lecturer(string id)
+            : base(id)
+        { }
 
         protected Lecturer(string id, string name, string gender, string phone, string email)
+            : this(id)
         {
-            lecturers[id] = this;
-            fID = id;
             fName = name;
             fGender = gender;
             fPhone = phone;
             fEmail = email;
             loaded = true;
-        }
-
-        /// <summary>
-        /// Lecturer ID
-        /// </summary>
-
-        private string fID;
-        public string ID
-        {
-            get
-            {
-                return fID;
-            }
         }
 
         /// <summary>
@@ -127,27 +90,35 @@ namespace UI_WinForms.Classes
             }
         }
 
-        public void Refresh()
+        public override void Refresh()
         {
-            switch (ID)
+            object[] sql_params = { ID };
+            var dr = ExecuteReader("select name, gender, phone, email from lecture where id=@0", sql_params);
+            try
             {
-                case "L1":
-                    fName = "Lecturer 1";
-                    fGender = "Male";
-                    fPhone = "5555555";
-                    fEmail = "l1@example.com";
-                    break;
-                case "L2":
-                    fName = "Lecturer 2";
-                    fGender = "Female";
-                    fPhone = "5555565";
-                    fEmail = "l2@example.com";
-                    break;
-                default:
-                    break;
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    fName = dr.GetString(0);
+                    fGender = dr.GetString(1);
+                    fPhone = dr.GetString(2);
+                    fEmail = dr.GetString(3);
+                    loaded = true;
+                }
+                else
+                {
+                    throw new System.Data.RowNotInTableException("No row with id=" + ID);
+                }
             }
-            loaded = true;
+            finally
+            {
+                dr.Close();
+            }
         }
 
+        public override void Update()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
