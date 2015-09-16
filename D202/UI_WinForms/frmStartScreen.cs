@@ -13,9 +13,6 @@ namespace UI_WinForms
 {
     public partial class frmStartScreen : Form
     {
-        // Public Application variable declared and initialized which will load Courses and Categories into the listbox
-        Classes.Application app = new Classes.Application();
-
         public frmStartScreen()
         {
             InitializeComponent();
@@ -28,7 +25,7 @@ namespace UI_WinForms
             lbxLoad.Items.Clear();
 
             // Items are loaded into the listbox from the database
-            lbxLoad.Items.AddRange(app.LoadCategories());
+            lbxLoad.Items.AddRange(Category.LoadIDs());
 
         }
 
@@ -38,7 +35,7 @@ namespace UI_WinForms
             lbxLoad.Items.Clear();
 
             // Items are loaded into the listbox from the database
-            lbxLoad.Items.AddRange(app.LoadCourses());
+            lbxLoad.Items.AddRange(Course.LoadIDs());
         }
         #endregion
 
@@ -92,7 +89,7 @@ namespace UI_WinForms
                 Category cat = (Category)itemSelected;
 
                 // Items are loaded into the listbox from the database
-                lbxLoad.Items.AddRange(app.LoadCourses(cat));
+                lbxLoad.Items.AddRange(Course.LoadIDs(cat));
             }
             
         }

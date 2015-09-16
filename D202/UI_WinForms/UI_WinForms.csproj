@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Application.cs" />
     <Compile Include="Classes\Category.cs" />
     <Compile Include="Classes\Course.cs" />
     <Compile Include="Classes\Filter.cs" />
@@ -52,7 +51,7 @@
     <Compile Include="Classes\Student.cs" />
     <Compile Include="Classes\Table.cs" />
     <Compile Include="Classes\DatabaseConnector.cs" />
-	<Compile Include="frmStartScreen.cs">
+    <Compile Include="frmStartScreen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmStartScreen.Designer.cs">
