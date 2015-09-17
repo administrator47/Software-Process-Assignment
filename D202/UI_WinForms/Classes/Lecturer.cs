@@ -111,7 +111,7 @@ namespace UI_WinForms.Classes
                     fRecordedID = ID;
                     fName = dr.GetString(0);
                     fGender = dr.GetString(1);
-                    fPhone = dr.GetString(2);
+                    fPhone = dr.GetInt32(2).ToString();
                     fEmail = dr.GetString(3);
                     loaded = true;
                     dirty = false;

@@ -39,6 +39,13 @@ namespace UI_WinForms.Classes
             return LoadFromDataReader(dr);
         }
 
+        public static Course[] LoadIDs(int year, int semester)
+        {
+            object[] sql_params = { year, semester };
+            var dr = ExecuteReader(String.Format("select id from {0} where year=@0 and semester=@1", TableName()), sql_params);
+            return LoadFromDataReader(dr);
+        }
+
         private string fName;
         public string Name
         {

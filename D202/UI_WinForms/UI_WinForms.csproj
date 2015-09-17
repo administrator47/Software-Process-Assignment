@@ -51,16 +51,34 @@
     <Compile Include="Classes\Student.cs" />
     <Compile Include="Classes\Table.cs" />
     <Compile Include="Classes\DatabaseConnector.cs" />
-    <Compile Include="frmStartScreen.cs">
+    <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmStartScreen.Designer.cs">
-      <DependentUpon>frmStartScreen.cs</DependentUpon>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPlanOfStudy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPlanOfStudy.Designer.cs">
+      <DependentUpon>frmPlanOfStudy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCourseInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCourseInfo.Designer.cs">
+      <DependentUpon>frmCourseInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmStartScreen.resx">
-      <DependentUpon>frmStartScreen.cs</DependentUpon>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPlanOfStudy.resx">
+      <DependentUpon>frmPlanOfStudy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCourseInfo.resx">
+      <DependentUpon>frmCourseInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
