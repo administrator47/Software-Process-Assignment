@@ -34,7 +34,7 @@ namespace UI_WinForms
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-
+            SetupCourses();
         }
 
         private void SetupCourses ()
@@ -50,15 +50,24 @@ namespace UI_WinForms
                 year = 2;
             }
 
-            // Array of course objects retrieved from database based on year and semester
-            Course[] courseList = Course.LoadIDs(year,semester);
+            // list of course objects retrieved from database based on year and semester
+            List<Course> courseList = new List<Course>();
+            courseList.AddRange(Course.LoadIDs(year, semester));
+            courseList.AddRange(Course.LoadIDs(year, 3));
+
+            // Any duplicates are filtered out
+            //courseList = courseList.GroupBy(x => x)
+            // .Where(x => x.Count() > 1)
+            // .Select(x => x.Key)
+            // .ToList();
 
             // All compulsory Course objects are loaded into a new course array
             Course[] compulsory = (from comp in courseList
                                    where comp.Compulsory == true
                                    select comp).ToArray();
 
-            // Course array is added to the listbox
+            // Listbox is cleared then course array is added
+            lbxCompulsory.Items.Clear();
             lbxCompulsory.Items.AddRange(compulsory);
 
             // All non-compulsory Course objects are loaded into a new course array
@@ -66,10 +75,18 @@ namespace UI_WinForms
                                    where comp.Compulsory == false
                                    select comp).ToArray();
 
-            // Course array is added to the listbox
-            cbxOne.Items.AddRange(nonCompulsory);
-            cbxTwo.Items.AddRange(nonCompulsory);
-            cbxThree.Items.AddRange(nonCompulsory);
+            // Foreach loop goes through every ComboBox, clears the items then adds the range on non-compulsory course items
+            foreach(ComboBox c in gbxCourses.Controls)
+            {
+                c.Items.Clear();
+                c.Items.AddRange(nonCompulsory);
+            }
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
         }
 
 
