@@ -44,12 +44,44 @@ namespace UI_WinForms.Classes
                 conn.Open();
                 // Create the command
                 SqlCommand command = new SqlCommand(sqlCommand, conn);
+
+                // set procedure
+                command.CommandType = CommandType.StoredProcedure;
+
                 //// Add the parameters.
                 command.Parameters.Add(new SqlParameter(id, password));
 
+                // Exec command
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Console.WriteLine(command);
+                        Console.WriteLine(reader);
+                    }
+                }
                 return command;
 
             }
+
+            //// 1.  create a command object identifying the stored procedure
+            //SqlCommand cmd = new SqlCommand("CustOrderHist", conn);
+
+            //// 2. set the command object so it knows to execute a stored procedure
+            //cmd.CommandType = CommandType.StoredProcedure;
+
+            //// 3. add parameter to command, which will be passed to the stored procedure
+            //cmd.Parameters.Add(new SqlParameter("@CustomerID", custId));
+
+            //// execute the command
+            //using (SqlDataReader rdr = cmd.ExecuteReader())
+            //{
+            //    // iterate through results, printing each to console
+            //    while (rdr.Read())
+            //    {
+            //        Console.WriteLine("Product: {0,-35} Total: {1,2}", rdr["ProductName"], rdr["Total"]);
+            //    }
+            //}
         }
 
         public Course[] GetCourses ()
