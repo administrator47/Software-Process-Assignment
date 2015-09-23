@@ -55,12 +55,6 @@ namespace UI_WinForms
             courseList.AddRange(Course.LoadIDs(year, semester));
             courseList.AddRange(Course.LoadIDs(year, 3));
 
-            // Any duplicates are filtered out
-            //courseList = courseList.GroupBy(x => x)
-            // .Where(x => x.Count() > 1)
-            // .Select(x => x.Key)
-            // .ToList();
-
             // All compulsory Course objects are loaded into a new course array
             Course[] compulsory = (from comp in courseList
                                    where comp.Compulsory == true
@@ -75,18 +69,49 @@ namespace UI_WinForms
                                    where comp.Compulsory == false
                                    select comp).ToArray();
 
-            // Course array is added to the listbox
-            cbxOne.Items.Clear();
-            cbxOne.Items.AddRange(nonCompulsory);
-            cbxTwo.Items.Clear();
-            cbxTwo.Items.AddRange(nonCompulsory);
-            cbxThree.Items.Clear();
-            cbxThree.Items.AddRange(nonCompulsory);
+            // Foreach loop goes through every ComboBox, clears the items then adds the range on non-compulsory course items
+            foreach(ComboBox c in gbxCourses.Controls)
+            {
+                c.Items.Clear();
+                c.Items.AddRange(nonCompulsory);
+            }
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            try
+            {
+                DialogResult dr = MessageBox.Show("Are you sure you want to delete you plan of study?", "Warning!", MessageBoxButtons.YesNo);
 
+                if(dr.Equals(DialogResult.Yes))
+                {
+                   // Delete textbox text
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ConstructTextbox()
+        {
+            try 
+            {
+                // Clear the textbox
+                tbxCoursesOutput.Clear();
+
+                // Setup textbox
+             //   tbxCoursesOutput.Text = "STUDYPLAN: \n \nYear Two:\n" /*Compulsory*/+ +"\n" + +"\n" + +"\n" + +"\n";
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
 
