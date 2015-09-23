@@ -31,6 +31,27 @@ namespace UI_WinForms.Classes
             }
         }
 
+        public SqlCommand LoginConnect(string sqlCommand, string id, string password)
+        {
+            // Create the connection to the resource!
+            // This is the connection, that is established and
+            // will be available throughout this block.
+            using (SqlConnection conn = new SqlConnection())
+            {
+                // Create the connectionString
+                // Trusted_Connection is used to denote the connection uses Windows Authentication
+                conn.ConnectionString = "Data Source=tfs;Initial Catalog=study3;Integrated Security=True";
+                conn.Open();
+                // Create the command
+                SqlCommand command = new SqlCommand(sqlCommand, conn);
+                //// Add the parameters.
+                command.Parameters.Add(new SqlParameter(id, password));
+
+                return command;
+
+            }
+        }
+
         public Course[] GetCourses ()
         {
             List<Course> holder = new List<Course>();
