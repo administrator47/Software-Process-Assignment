@@ -258,7 +258,7 @@ namespace UI_WinForms
                 }
             }
 
-        }
+            }
 
         private void btnStudyPlan_Click(object sender, EventArgs e)
         {
