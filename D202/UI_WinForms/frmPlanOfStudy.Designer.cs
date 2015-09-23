@@ -46,6 +46,7 @@
             this.rdoYearTwo = new System.Windows.Forms.RadioButton();
             this.lbxCompulsory = new System.Windows.Forms.ListBox();
             this.gbxCourses = new System.Windows.Forms.GroupBox();
+            this.tbxCoursesOutput = new System.Windows.Forms.TextBox();
             this.gbxSemester.SuspendLayout();
             this.gbxYear.SuspendLayout();
             this.gbxCourses.SuspendLayout();
@@ -118,7 +119,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(762, 458);
+            this.btnSave.Location = new System.Drawing.Point(392, 374);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 35);
             this.btnSave.TabIndex = 7;
@@ -128,7 +129,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(641, 459);
+            this.btnRefresh.Location = new System.Drawing.Point(271, 374);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(100, 35);
             this.btnRefresh.TabIndex = 8;
@@ -138,7 +139,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(517, 459);
+            this.btnDelete.Location = new System.Drawing.Point(683, 459);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(100, 35);
             this.btnDelete.TabIndex = 9;
@@ -232,11 +233,22 @@
             this.gbxCourses.TabStop = false;
             this.gbxCourses.Text = "Select Course(s)";
             // 
+            // tbxCoursesOutput
+            // 
+            this.tbxCoursesOutput.Enabled = false;
+            this.tbxCoursesOutput.Location = new System.Drawing.Point(584, 149);
+            this.tbxCoursesOutput.Multiline = true;
+            this.tbxCoursesOutput.Name = "tbxCoursesOutput";
+            this.tbxCoursesOutput.Size = new System.Drawing.Size(277, 291);
+            this.tbxCoursesOutput.TabIndex = 14;
+            this.tbxCoursesOutput.Text = "Courses:\r\n";
+            // 
             // frmPlanOfStudy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 506);
+            this.Controls.Add(this.tbxCoursesOutput);
             this.Controls.Add(this.gbxCourses);
             this.Controls.Add(this.lbxCompulsory);
             this.Controls.Add(this.gbxYear);
@@ -282,5 +294,6 @@
         private System.Windows.Forms.RadioButton rdoYearTwo;
         private System.Windows.Forms.ListBox lbxCompulsory;
         private System.Windows.Forms.GroupBox gbxCourses;
+        private System.Windows.Forms.TextBox tbxCoursesOutput;
     }
 }
