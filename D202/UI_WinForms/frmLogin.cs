@@ -25,19 +25,33 @@ namespace UI_WinForms
         {
             // Call the Verify method
             Verify();
+
+            if (tbxUsername.Text == "")
+            {
+                MessageBox.Show("Pease enter a valid username!!");
+                tbxUsername.Focus();
+            }
+            else if (tbxPassword.Text == "")
+            {
+                MessageBox.Show("Please enter a valid password!!");
+                tbxPassword.Focus();
+            }
+
+            
         }
 
         private void Verify ()
         {
+            string studLecy = tbxUsername.Text;
             // Make the error label invisible
             lblError.Visible = false;
 
             // If the password and the username match then
-            if ((tbxPassword.Text == "admin" && tbxUsername.Text == "admin") || (tbxPassword.Text.Length == 0 && tbxUsername.Text.Length == 0))
+            if ((tbxPassword.Text == "l" && tbxUsername.Text == "l") || (tbxPassword.Text == "s" && tbxUsername.Text == "s"))
             {
                 // If login code returns results
                 this.Hide();
-                frmCourseInfo courseInfo = new frmCourseInfo();
+                frmCourseInfo courseInfo = new frmCourseInfo(studLecy);
                 courseInfo.ShowDialog();
                 this.Close();
                 //TODO: Need to make an account object (or student)

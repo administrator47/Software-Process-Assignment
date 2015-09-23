@@ -13,12 +13,23 @@ namespace UI_WinForms
 {
     public partial class frmCourseInfo : Form
     {
-
-        public frmCourseInfo()
+        string studentOrLecturer;
+        public frmCourseInfo(string studLect)
         {
+            studentOrLecturer = studLect;
             InitializeComponent();
         }
-
+        private void frmCourseInfo_Load(object sender, EventArgs e)
+        {
+            if (studentOrLecturer == "l")
+            {
+                btnStudyPlan.Visible = false;
+            }
+            else
+            {
+                btnModify.Visible = false;
+            }
+        }
         #region Load Category and Course
         private void btnLoadCategories_Click(object sender, EventArgs e)
         {
@@ -267,6 +278,8 @@ namespace UI_WinForms
             // Plan of study form is shown on screen
             plan.Show();
         }
+
+
 
     }
 }

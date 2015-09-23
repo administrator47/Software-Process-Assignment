@@ -352,6 +352,7 @@
             this.Name = "frmCourseInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BICT Course Information";
+            this.Load += new System.EventHandler(this.frmCourseInfo_Load);
             this.gbxLoad.ResumeLayout(false);
             this.gbxPaperInfo.ResumeLayout(false);
             this.gbxPaperInfo.PerformLayout();
