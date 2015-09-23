@@ -31,7 +31,7 @@ namespace UI_WinForms.Classes
             }
         }
 
-        public SqlCommand LoginConnect(string sqlCommand, string id, string password)
+        public void LoginConnect(string sqlCommand, string id, string password)
         {
             // Create the connection to the resource!
             // This is the connection, that is established and
@@ -60,7 +60,7 @@ namespace UI_WinForms.Classes
                         Console.WriteLine(reader);
                     }
                 }
-                return command;
+                //return command;
 
             }
 
