@@ -75,13 +75,13 @@ namespace UI_WinForms
                                    where comp.Compulsory == false
                                    select comp).ToArray();
 
-            // Course array is added to the listbox
-            cbxOne.Items.Clear();
-            cbxOne.Items.AddRange(nonCompulsory);
-            cbxTwo.Items.Clear();
-            cbxTwo.Items.AddRange(nonCompulsory);
-            cbxThree.Items.Clear();
-            cbxThree.Items.AddRange(nonCompulsory);
+            // Foreach loop goes through every ComboBox, clears the items then adds the range on non-compulsory course items
+            foreach(ComboBox c in gbxCourses.Controls)
+            {
+                c.Items.Clear();
+                c.Items.AddRange(nonCompulsory);
+            }
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
