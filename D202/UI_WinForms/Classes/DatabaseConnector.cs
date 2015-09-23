@@ -10,6 +10,11 @@ namespace UI_WinForms.Classes
 {
     class DatabaseConnector
     {
+        public DatabaseConnector ()
+        {
+
+        }
+
         public SqlCommand SQLConnect(string sqlCommand)
         {
             // Create the connection to the resource!
@@ -41,7 +46,7 @@ namespace UI_WinForms.Classes
                 // Create the connectionString
                 // Trusted_Connection is used to denote the connection uses Windows Authentication
                 conn.ConnectionString = "Data Source=tfs;Initial Catalog=study3;Integrated Security=True";
-                conn.Open();
+                
                 // Create the command
                 SqlCommand command = new SqlCommand(sqlCommand, conn);
 
@@ -49,15 +54,23 @@ namespace UI_WinForms.Classes
                 command.CommandType = CommandType.StoredProcedure;
 
                 //// Add the parameters.
-                command.Parameters.Add(new SqlParameter(id, password));
+            //    command.Parameters.Add(new SqlParameter("@id", "@password"));
+
+                command.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                command.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
+
+                conn.Open();
+                command.ExecuteNonQuery();
 
                 // Exec command
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        Console.WriteLine(command);
-                        Console.WriteLine(reader);
+                        Console.WriteLine(command.CommandText);
+                        Console.WriteLine(command.Container);
+                        Console.WriteLine(command.Transaction);
+                        Console.WriteLine(reader.Read());
                     }
                 }
                 //return command;

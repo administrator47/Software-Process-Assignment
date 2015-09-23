@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI_WinForms.Classes;
 
 namespace UI_WinForms
 {
@@ -26,15 +27,14 @@ namespace UI_WinForms
             // Call the Verify method
             Verify();
 
-            if (tbxUsername.Text == "")
+            if (tbxUsername.Text.Length < 0 || tbxPassword.Text.Length < 0)
             {
-                MessageBox.Show("Pease enter a valid username!!");
+                MessageBox.Show("Pease enter a valid username and password!!");
                 tbxUsername.Focus();
             }
-            else if (tbxPassword.Text == "")
+            else
             {
-                MessageBox.Show("Please enter a valid password!!");
-                tbxPassword.Focus();
+                Verify();
             }
 
             
@@ -45,6 +45,10 @@ namespace UI_WinForms
             string studLecy = tbxUsername.Text;
             // Make the error label invisible
             lblError.Visible = false;
+
+            DatabaseConnector qwd = new DatabaseConnector();
+
+            qwd.LoginConnect("db_owner.SELECT_ID",tbxUsername.Text,tbxPassword.Text);
 
             // If the password and the username match then
             if ((tbxPassword.Text == "l" && tbxUsername.Text == "l") || (tbxPassword.Text == "s" && tbxUsername.Text == "s"))
