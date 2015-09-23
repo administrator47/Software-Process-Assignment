@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPlanOfStudy));
             this.lblPlanOfStudy = new System.Windows.Forms.Label();
             this.lblCompulsoryPapers = new System.Windows.Forms.Label();
             this.lblYourID = new System.Windows.Forms.Label();
@@ -46,6 +47,8 @@
             this.rdoYearThree = new System.Windows.Forms.RadioButton();
             this.rdoYearTwo = new System.Windows.Forms.RadioButton();
             this.lbxCompulsory = new System.Windows.Forms.ListBox();
+            this.gbxPapers = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.gbxSemester.SuspendLayout();
             this.gbxYear.SuspendLayout();
             this.SuspendLayout();
@@ -227,10 +230,31 @@
             this.lbxCompulsory.Size = new System.Drawing.Size(150, 160);
             this.lbxCompulsory.TabIndex = 12;
             // 
+            // gbxPapers
+            // 
+            this.gbxPapers.BackColor = System.Drawing.Color.IndianRed;
+            this.gbxPapers.Location = new System.Drawing.Point(25, 63);
+            this.gbxPapers.Name = "gbxPapers";
+            this.gbxPapers.Size = new System.Drawing.Size(200, 364);
+            this.gbxPapers.TabIndex = 13;
+            this.gbxPapers.TabStop = false;
+            this.gbxPapers.Text = "groupBox1";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.groupBox2.Location = new System.Drawing.Point(425, 150);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(291, 269);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "groupBox2";
+            // 
             // frmPlanOfStudy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(875, 506);
             this.Controls.Add(this.lbxCompulsory);
             this.Controls.Add(this.gbxYear);
@@ -246,6 +270,8 @@
             this.Controls.Add(this.lblYourID);
             this.Controls.Add(this.lblCompulsoryPapers);
             this.Controls.Add(this.lblPlanOfStudy);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.gbxPapers);
             this.Name = "frmPlanOfStudy";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Plan of Study";
@@ -279,5 +305,7 @@
         private System.Windows.Forms.RadioButton rdoYearThree;
         private System.Windows.Forms.RadioButton rdoYearTwo;
         private System.Windows.Forms.ListBox lbxCompulsory;
+        private System.Windows.Forms.GroupBox gbxPapers;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
