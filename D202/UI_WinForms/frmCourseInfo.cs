@@ -11,12 +11,10 @@ using UI_WinForms.Classes;
 
 namespace UI_WinForms
 {
-    public partial class frmStartScreen : Form
+    public partial class frmCourseInfo : Form
     {
-        // Public Application variable declared and initialized which will load Courses and Categories into the listbox
-        Classes.Application app = new Classes.Application();
 
-        public frmStartScreen()
+        public frmCourseInfo()
         {
             InitializeComponent();
         }
@@ -28,7 +26,8 @@ namespace UI_WinForms
             lbxLoad.Items.Clear();
 
             // Items are loaded into the listbox from the database
-            lbxLoad.Items.AddRange(app.LoadCategories());
+            lbxLoad.Items.AddRange(Category.LoadIDs());
+
         }
 
         private void btnLoadCourses_Click(object sender, EventArgs e)
@@ -37,7 +36,7 @@ namespace UI_WinForms
             lbxLoad.Items.Clear();
 
             // Items are loaded into the listbox from the database
-            lbxLoad.Items.AddRange(app.LoadCourses());
+            lbxLoad.Items.AddRange(Course.LoadIDs());
         }
         #endregion
 
@@ -91,7 +90,7 @@ namespace UI_WinForms
                 Category cat = (Category)itemSelected;
 
                 // Items are loaded into the listbox from the database
-                lbxLoad.Items.AddRange(app.LoadCourses(cat));
+                lbxLoad.Items.AddRange(Course.LoadIDs(cat));
             }
             
         }
@@ -100,6 +99,22 @@ namespace UI_WinForms
         // If selected item is a Course object then display course info
         private void lbxLoad_SelectedIndexChanged(object sender, EventArgs e)
         {
+            foreach (Control c in gbxPaperInfo.Controls)
+            {
+                if (c is TextBox)
+                {
+                    c.Text = "";
+                }
+
+                foreach (Control d in gbxLecturer.Controls)
+                {
+                    if (d is TextBox)
+                    {
+                        d.Text = "";
+                    }
+
+                }
+            }
             // Variable declared that will hold the object that the user has selected from the listbox
             var itemSelected = lbxLoad.SelectedItem;
                 
@@ -121,18 +136,47 @@ namespace UI_WinForms
                     // Course var declared and selected listbox item is loaded into it
                     Course courseOutput = (Course)itemSelected;
 
-                    // Contents are loaded into the information boxes 
+                    // Contents of Course object are loaded into the information boxes 
                     tbxDescription.Text = courseOutput.Description;
                     tbxPaperName.Text = courseOutput.Name;
                     tbxCategory.Text = courseOutput.CourseCategory.ToString();
-                  // NEED TO CHECK FOR NULL VALUE FIRST IF NULL DISPALY NONE
-                  //tbxPaperPrerequisite.Text = courseOutput.Prerequisite.ToString();
-                    //tbxLecturerName.Text = courseOutput.CourseLecturer.Name;
-                   // tbxLecturerPhone.Text = courseOutput.CourseLecturer.Phone.ToString();
-                  //  tbxLecturerEmail.Text = courseOutput.CourseLecturer.Email;
-                    tbxPaperID.Text = courseOutput.ID;
-                    tbxYear.Text = courseOutput.Compulsory.ToString();
+                    tbxYear.Text = courseOutput.Year.ToString();
 
+                    if (courseOutput.Semester == 3)
+                    {
+                        tbxSemester.Text = "1,2";
+                    }
+                    else
+                    {
+                         tbxSemester.Text = courseOutput.Semester.ToString();
+                    }
+
+                    tbxPaperID.Text = courseOutput.ID;
+                    if (courseOutput.Prerequisite != null)
+                    {
+                        tbxPaperPrerequisite.Text = courseOutput.Prerequisite.Name;
+                    }
+                    else
+                    {
+                        tbxPaperPrerequisite.Text = "None";
+                    }
+
+                    // Lecturer information loaded in
+                    if (courseOutput.CourseLecturer != null)
+                    {
+                        tbxLecturerName.Text = courseOutput.CourseLecturer.Name;
+                        tbxLecturerEmail.Text = courseOutput.CourseLecturer.Email;
+                        tbxLecturerPhone.Text = courseOutput.CourseLecturer.Phone;
+                    }
+                    else
+                    {
+                        tbxLecturerName.Text = "Project Sponsor";
+                        tbxLecturerEmail.Text = "N/A";
+                        tbxLecturerPhone.Text = "N/A";
+                    }
+
+
+                    
 
 
                 }
@@ -150,6 +194,7 @@ namespace UI_WinForms
                 ShowAndHide();
 
                 //SAVE CODE HERE
+
             }
 
         }
@@ -166,10 +211,24 @@ namespace UI_WinForms
                 btnSave.Visible = false;
                 // Change btnModify's text to "Modify"
                 btnModify.Text = "Modify";
-                // Label which says "Paper ID" is hidden
-                lblPaperID.Visible = false;
-                // Textbox which contains Paper ID is hidden
-                tbxPaperID.Visible = false;
+
+                // Loop through Paper Info groupbox and disable textbox
+                foreach (Control c in gbxPaperInfo.Controls)
+                {
+                    if (c is TextBox)
+                    {
+                        c.Enabled = false;
+                    }
+                }
+
+                // Loop through lecturer Info groupbox and disable textbox
+                foreach (Control c in gbxLecturer.Controls)
+                {
+                    if (c is TextBox)
+                    {
+                        c.Enabled = false;
+                    }
+                }
             }
 
                 // Else the save button is hidden..
@@ -179,12 +238,34 @@ namespace UI_WinForms
                 btnSave.Visible = true;
                 // Changes btnModify's text to "Stop Modifying"
                 btnModify.Text = "Stop Modifying";
-                // lblPaperID is made visible
-                lblPaperID.Visible = true;
-                // tbxPaperID is made visible
-                tbxPaperID.Visible = true;
+
+                // Loop through groupbox and enable textbox
+                foreach(Control c in gbxPaperInfo.Controls)
+                {
+                    if(c is TextBox)
+                    {
+                        c.Enabled = true;
+                    }
+                }
+
+                // Loop through lecturer Info groupbox and disable textbox
+                foreach (Control c in gbxLecturer.Controls)
+                {
+                    if (c is TextBox)
+                    {
+                        c.Enabled = true;
+                    }
+                }
             }
 
+            }
+
+        private void btnStudyPlan_Click(object sender, EventArgs e)
+        {
+            // Plan of study form declared and instantiated
+            frmPlanOfStudy plan = new frmPlanOfStudy();
+            // Plan of study form is shown on screen
+            plan.Show();
         }
 
     }

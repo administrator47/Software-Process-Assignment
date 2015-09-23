@@ -6,57 +6,25 @@ using System.Threading.Tasks;
 
 namespace UI_WinForms.Classes
 {
-    class Lecturer
+    class Lecturer: Table<Lecturer>
     {
-        protected static Dictionary<string, Lecturer> lecturers = new Dictionary<string, Lecturer>(10);
-
-        public static Lecturer FromID(string id)
+        public new static string TableName()
         {
-            try
-            {
-                return lecturers[id];
-            }
-            catch (KeyNotFoundException)
-            {
-                return new Lecturer(id);
-            }
-            catch (ArgumentNullException)
-            {
-                return null;
-            }
+            return "lecture";
         }
 
-        protected bool loaded = false;
-
-        protected Lecturer(string id)
-        {
-            lecturers[id] = this;
-            fID = id;
-            loaded = false;
-        }
+        public Lecturer(string id)
+            : base(id)
+        { }
 
         protected Lecturer(string id, string name, string gender, string phone, string email)
+            : this(id)
         {
-            lecturers[id] = this;
-            fID = id;
             fName = name;
             fGender = gender;
             fPhone = phone;
             fEmail = email;
             loaded = true;
-        }
-
-        /// <summary>
-        /// Lecturer ID
-        /// </summary>
-
-        private string fID;
-        public string ID
-        {
-            get
-            {
-                return fID;
-            }
         }
 
         /// <summary>
@@ -72,6 +40,7 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fName != value;
                 fName = value;
             }
         }
@@ -89,6 +58,7 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fGender != value;
                 fGender = value;
             }
         }
@@ -106,6 +76,7 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fPhone != value;
                 fPhone = value;
             }
         }
@@ -123,31 +94,59 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fEmail != value;
                 fEmail = value;
             }
         }
 
-        public void Refresh()
+        public override void Refresh()
         {
-            switch (ID)
+            object[] sql_params = { ID };
+            var dr = ExecuteReader(String.Format("select name, gender, phone, email from {0} where id=@0", TableName()), sql_params);
+            try
             {
-                case "L1":
-                    fName = "Lecturer 1";
-                    fGender = "Male";
-                    fPhone = "5555555";
-                    fEmail = "l1@example.com";
-                    break;
-                case "L2":
-                    fName = "Lecturer 2";
-                    fGender = "Female";
-                    fPhone = "5555565";
-                    fEmail = "l2@example.com";
-                    break;
-                default:
-                    break;
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    fRecordedID = ID;
+                    fName = dr.GetString(0);
+                    fGender = dr.GetString(1);
+                    fPhone = dr.GetInt32(2).ToString();
+                    fEmail = dr.GetString(3);
+                    loaded = true;
+                    dirty = false;
+                }
+                else
+                {
+                    throw new System.Data.RowNotInTableException("No row with id=" + ID);
+                }
             }
-            loaded = true;
+            finally
+            {
+                dr.Close();
+            }
         }
 
+        public override void Update()
+        {
+            if (!dirty) return;
+            base.Update();
+
+            object[] sql_params = { ID, Name, Gender, Phone, Email };
+
+            string sql_query;
+            if (RecordedID == null)
+            {
+                sql_query = String.Format("insert {0} (id, name, gender, phone, email) values ((@0, @1, @2, @3, @4))", TableName());
+            }
+            else
+            {
+                sql_query = String.Format("update {0} set name=@1, gender=@2, phone=@3, email=@4 where id=@0", TableName());
+            }
+            ExecuteNonQuery(sql_query, sql_params);
+            fRecordedID = ID;
+            loaded = true;
+            dirty = false;
+        }
     }
 }

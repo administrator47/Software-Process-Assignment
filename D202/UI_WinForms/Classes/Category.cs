@@ -6,35 +6,23 @@ using System.Threading.Tasks;
 
 namespace UI_WinForms.Classes
 {
-    class Category
+    class Category : Table<Category>
     {
-        protected static Dictionary<string, Category> categories = new Dictionary<string, Category>(10);
-
-        public static Category FromID(string id)
+        public new static string TableName()
         {
-            try
-            {
-                return categories[id];
-            }
-            catch (KeyNotFoundException)
-            {
-                return new Category(id);
-            }
-            catch (ArgumentNullException)
-            {
-                return null;
-            }
-          }
+            return "category";
+        }
 
-        private bool loaded = false;
+        public Category(string id)
+            : base(id)
+        { }
 
-        private string fID;
-        public string ID
+        protected Category(string id, string name, string description) 
+            : this (id)
         {
-            get 
-            { 
-                return fID;
-            }
+            fName = name;
+            fDescription = description;
+            loaded = true;
         }
 
         private string fName;
@@ -65,46 +53,51 @@ namespace UI_WinForms.Classes
             }
         }
 
-        protected Category(string id)
+        public override void Refresh()
         {
-            categories[id] = this;
-            fID = id;
-            loaded = false;
-        }
-
-        protected Category(string id, string name, string description)
-        {
-            categories[id] = this;
-            fID = id;
-            fName = name;
-            fDescription = description;
-            loaded = true;
-        }
-
-        public void Refresh()
-        {
-            switch (ID)
+            object[] sql_params = { ID };
+            var dr = ExecuteReader(String.Format("select name, description from {0} where id=@0", TableName()), sql_params);
+            try
             {
-                case "A":
-                    fName = "Category A";
-                    fDescription = "Description 1 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire.";
-                    break;
-                case "B":
-                    fName = "Category B";
-                    fDescription = "Description 2 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire.";
-                    break;
-                case "C":
-                    fName = "Category C";
-                    fDescription = "Description 3 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire.";
-                    break;
-                case "D":
-                    fName = "Category D";
-                    fDescription = "Description 4 Kia ora.. Mean while, in a waka, Lomu and Fred Dagg were up to no good with a bunch of beaut pinapple lumps. The heaps good force of his burning my Vogel's was on par with Spot, the Telecom dog's tip-top length of number 8 wire.";
-                    break;
-                default:
-                    break;
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    fName = dr.GetString(0);
+                    fDescription = dr.GetString(1);
+                    loaded = true;
+                    dirty = false;
+                }
+                else
+                {
+                    throw new System.Data.RowNotInTableException("No row with id=" + ID);
+                }
             }
+            finally
+            {
+                dr.Close();
+            }
+        }
+
+        public override void Update()
+        {
+            if (!dirty) return;
+            base.Update();
+
+            object[] sql_params = { ID, Name, Description };
+
+            string sql_query;
+            if (RecordedID == null)
+            {
+                sql_query = String.Format("insert {0} (id, name, description) values ((@0, @1, @2))", TableName());
+            }
+            else
+            {
+                sql_query = String.Format("update {0} set name=@1, description=@2 where id=@0", TableName());
+            }
+            ExecuteNonQuery(sql_query, sql_params);
+            fRecordedID = ID;
             loaded = true;
+            dirty = false;
         }
 
         public override string ToString()
