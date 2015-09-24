@@ -101,12 +101,12 @@ namespace UI_WinForms
             }
         }
 
-        private void ConstructTextbox()
+        private void ConstructTextboxes()
         {
             try 
             {
                 // Clear the textbox
-                tbxCoursesOutput.Clear();
+              
 
                 // Setup textbox
              //   tbxCoursesOutput.Text = "STUDYPLAN: \n \nYear Two:\n" /*Compulsory*/+ +"\n" + +"\n" + +"\n" + +"\n";
@@ -118,6 +118,13 @@ namespace UI_WinForms
                 MessageBox.Show(ex.Message);
             }
         }
+
+
+        private void btnAddToPlan_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
 
     }

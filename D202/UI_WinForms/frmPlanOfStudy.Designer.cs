@@ -46,11 +46,15 @@
             this.rdoYearTwo = new System.Windows.Forms.RadioButton();
             this.lbxCompulsory = new System.Windows.Forms.ListBox();
             this.gbxCourses = new System.Windows.Forms.GroupBox();
-            this.tbxCoursesOutput = new System.Windows.Forms.TextBox();
             this.lblWelcome = new System.Windows.Forms.Label();
+            this.btnDeleteAll = new System.Windows.Forms.Button();
+            this.btnAddToPlan = new System.Windows.Forms.Button();
+            this.gbxStudyPlan = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.gbxSemester.SuspendLayout();
             this.gbxYear.SuspendLayout();
             this.gbxCourses.SuspendLayout();
+            this.gbxStudyPlan.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblPlanOfStudy
@@ -78,7 +82,7 @@
             // lblYourID
             // 
             this.lblYourID.AutoSize = true;
-            this.lblYourID.Location = new System.Drawing.Point(581, 111);
+            this.lblYourID.Location = new System.Drawing.Point(30, 25);
             this.lblYourID.Name = "lblYourID";
             this.lblYourID.Size = new System.Drawing.Size(46, 13);
             this.lblYourID.TabIndex = 0;
@@ -88,7 +92,7 @@
             // 
             this.lblStudentID.AutoSize = true;
             this.lblStudentID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblStudentID.Location = new System.Drawing.Point(633, 111);
+            this.lblStudentID.Location = new System.Drawing.Point(82, 25);
             this.lblStudentID.Name = "lblStudentID";
             this.lblStudentID.Size = new System.Drawing.Size(44, 13);
             this.lblStudentID.TabIndex = 0;
@@ -120,7 +124,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(392, 374);
+            this.btnSave.Location = new System.Drawing.Point(643, 487);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 35);
             this.btnSave.TabIndex = 7;
@@ -130,7 +134,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(271, 374);
+            this.btnRefresh.Location = new System.Drawing.Point(45, 37);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(100, 35);
             this.btnRefresh.TabIndex = 8;
@@ -140,11 +144,11 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(683, 459);
+            this.btnDelete.Location = new System.Drawing.Point(593, 446);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(100, 35);
             this.btnDelete.TabIndex = 9;
-            this.btnDelete.Text = "Delete";
+            this.btnDelete.Text = "Delete Course";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -234,16 +238,6 @@
             this.gbxCourses.TabStop = false;
             this.gbxCourses.Text = "Select Course(s)";
             // 
-            // tbxCoursesOutput
-            // 
-            this.tbxCoursesOutput.Enabled = false;
-            this.tbxCoursesOutput.Location = new System.Drawing.Point(584, 149);
-            this.tbxCoursesOutput.Multiline = true;
-            this.tbxCoursesOutput.Name = "tbxCoursesOutput";
-            this.tbxCoursesOutput.Size = new System.Drawing.Size(277, 291);
-            this.tbxCoursesOutput.TabIndex = 14;
-            this.tbxCoursesOutput.Text = "Courses:\r\n";
-            // 
             // lblWelcome
             // 
             this.lblWelcome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -254,22 +248,61 @@
             this.lblWelcome.Size = new System.Drawing.Size(0, 13);
             this.lblWelcome.TabIndex = 15;
             // 
+            // btnDeleteAll
+            // 
+            this.btnDeleteAll.Location = new System.Drawing.Point(700, 446);
+            this.btnDeleteAll.Name = "btnDeleteAll";
+            this.btnDeleteAll.Size = new System.Drawing.Size(100, 35);
+            this.btnDeleteAll.TabIndex = 9;
+            this.btnDeleteAll.Text = "Delete All";
+            this.btnDeleteAll.UseVisualStyleBackColor = true;
+            this.btnDeleteAll.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnAddToPlan
+            // 
+            this.btnAddToPlan.Location = new System.Drawing.Point(328, 374);
+            this.btnAddToPlan.Name = "btnAddToPlan";
+            this.btnAddToPlan.Size = new System.Drawing.Size(100, 35);
+            this.btnAddToPlan.TabIndex = 16;
+            this.btnAddToPlan.Text = "Add To Plan";
+            this.btnAddToPlan.UseVisualStyleBackColor = true;
+            this.btnAddToPlan.Click += new System.EventHandler(this.btnAddToPlan_Click);
+            // 
+            // gbxStudyPlan
+            // 
+            this.gbxStudyPlan.Controls.Add(this.textBox1);
+            this.gbxStudyPlan.Controls.Add(this.lblStudentID);
+            this.gbxStudyPlan.Controls.Add(this.lblYourID);
+            this.gbxStudyPlan.Location = new System.Drawing.Point(551, 98);
+            this.gbxStudyPlan.Name = "gbxStudyPlan";
+            this.gbxStudyPlan.Size = new System.Drawing.Size(282, 334);
+            this.gbxStudyPlan.TabIndex = 17;
+            this.gbxStudyPlan.TabStop = false;
+            this.gbxStudyPlan.Text = "Study Plan";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(20, 68);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(237, 20);
+            this.textBox1.TabIndex = 1;
+            // 
             // frmPlanOfStudy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 506);
+            this.ClientSize = new System.Drawing.Size(875, 532);
+            this.Controls.Add(this.gbxStudyPlan);
+            this.Controls.Add(this.btnAddToPlan);
             this.Controls.Add(this.lblWelcome);
-            this.Controls.Add(this.tbxCoursesOutput);
             this.Controls.Add(this.gbxCourses);
             this.Controls.Add(this.lbxCompulsory);
             this.Controls.Add(this.gbxYear);
             this.Controls.Add(this.gbxSemester);
+            this.Controls.Add(this.btnDeleteAll);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.lblStudentID);
-            this.Controls.Add(this.lblYourID);
             this.Controls.Add(this.lblCompulsoryPapers);
             this.Controls.Add(this.lblPlanOfStudy);
             this.Name = "frmPlanOfStudy";
@@ -281,6 +314,8 @@
             this.gbxYear.ResumeLayout(false);
             this.gbxYear.PerformLayout();
             this.gbxCourses.ResumeLayout(false);
+            this.gbxStudyPlan.ResumeLayout(false);
+            this.gbxStudyPlan.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -306,7 +341,10 @@
         private System.Windows.Forms.RadioButton rdoYearTwo;
         private System.Windows.Forms.ListBox lbxCompulsory;
         private System.Windows.Forms.GroupBox gbxCourses;
-        private System.Windows.Forms.TextBox tbxCoursesOutput;
         private System.Windows.Forms.Label lblWelcome;
+        private System.Windows.Forms.Button btnDeleteAll;
+        private System.Windows.Forms.Button btnAddToPlan;
+        private System.Windows.Forms.GroupBox gbxStudyPlan;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
