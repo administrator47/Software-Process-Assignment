@@ -47,6 +47,7 @@
             this.lbxCompulsory = new System.Windows.Forms.ListBox();
             this.gbxCourses = new System.Windows.Forms.GroupBox();
             this.tbxCoursesOutput = new System.Windows.Forms.TextBox();
+            this.lblWelcome = new System.Windows.Forms.Label();
             this.gbxSemester.SuspendLayout();
             this.gbxYear.SuspendLayout();
             this.gbxCourses.SuspendLayout();
@@ -77,7 +78,7 @@
             // lblYourID
             // 
             this.lblYourID.AutoSize = true;
-            this.lblYourID.Location = new System.Drawing.Point(491, 77);
+            this.lblYourID.Location = new System.Drawing.Point(581, 111);
             this.lblYourID.Name = "lblYourID";
             this.lblYourID.Size = new System.Drawing.Size(46, 13);
             this.lblYourID.TabIndex = 0;
@@ -87,7 +88,7 @@
             // 
             this.lblStudentID.AutoSize = true;
             this.lblStudentID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblStudentID.Location = new System.Drawing.Point(581, 77);
+            this.lblStudentID.Location = new System.Drawing.Point(633, 111);
             this.lblStudentID.Name = "lblStudentID";
             this.lblStudentID.Size = new System.Drawing.Size(44, 13);
             this.lblStudentID.TabIndex = 0;
@@ -243,11 +244,22 @@
             this.tbxCoursesOutput.TabIndex = 14;
             this.tbxCoursesOutput.Text = "Courses:\r\n";
             // 
+            // lblWelcome
+            // 
+            this.lblWelcome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.Location = new System.Drawing.Point(337, 54);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(0, 13);
+            this.lblWelcome.TabIndex = 15;
+            // 
             // frmPlanOfStudy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 506);
+            this.Controls.Add(this.lblWelcome);
             this.Controls.Add(this.tbxCoursesOutput);
             this.Controls.Add(this.gbxCourses);
             this.Controls.Add(this.lbxCompulsory);
@@ -295,5 +307,6 @@
         private System.Windows.Forms.ListBox lbxCompulsory;
         private System.Windows.Forms.GroupBox gbxCourses;
         private System.Windows.Forms.TextBox tbxCoursesOutput;
+        private System.Windows.Forms.Label lblWelcome;
     }
 }

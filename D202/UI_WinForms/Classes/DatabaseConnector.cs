@@ -36,7 +36,7 @@ namespace UI_WinForms.Classes
             }
         }
 
-        public void LoginConnect(string sqlCommand, string id, string password)
+        public List<string> LoginConnect(string sqlCommand, string id, string password)
         {
             // Create the connection to the resource!
             // This is the connection, that is established and
@@ -54,47 +54,29 @@ namespace UI_WinForms.Classes
                 command.CommandType = CommandType.StoredProcedure;
 
                 //// Add the parameters.
-            //    command.Parameters.Add(new SqlParameter("@id", "@password"));
-
                 command.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
                 command.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
 
                 conn.Open();
                 command.ExecuteNonQuery();
 
-                // Exec command
+                List<string> fill = new List<string>();
+
+                // Use a SqlDataReader to read the results from the SqlCommand
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    while (reader.Read())
+                    foreach (IDataRecord record in reader)
                     {
-                        Console.WriteLine(command.CommandText);
-                        Console.WriteLine(command.Container);
-                        Console.WriteLine(command.Transaction);
-                        Console.WriteLine(reader.Read());
+                        string[] returnArray = (ReadSingleRow((IDataRecord)reader));
+
+                        fill.AddRange(returnArray);
                     }
                 }
-                //return command;
 
+                //return
+                return fill;
+                
             }
-
-            //// 1.  create a command object identifying the stored procedure
-            //SqlCommand cmd = new SqlCommand("CustOrderHist", conn);
-
-            //// 2. set the command object so it knows to execute a stored procedure
-            //cmd.CommandType = CommandType.StoredProcedure;
-
-            //// 3. add parameter to command, which will be passed to the stored procedure
-            //cmd.Parameters.Add(new SqlParameter("@CustomerID", custId));
-
-            //// execute the command
-            //using (SqlDataReader rdr = cmd.ExecuteReader())
-            //{
-            //    // iterate through results, printing each to console
-            //    while (rdr.Read())
-            //    {
-            //        Console.WriteLine("Product: {0,-35} Total: {1,2}", rdr["ProductName"], rdr["Total"]);
-            //    }
-            //}
         }
 
         public Course[] GetCourses ()

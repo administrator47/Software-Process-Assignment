@@ -13,21 +13,27 @@ namespace UI_WinForms
 {
     public partial class frmCourseInfo : Form
     {
-        string studentOrLecturer;
-        public frmCourseInfo(string studLect)
+        // Global student object that holds the students info
+        Student LoggedInStudent;
+
+        public frmCourseInfo(string studID, string studName)
         {
-            studentOrLecturer = studLect;
             InitializeComponent();
+            LoggedInStudent = new Student(studID,studName);
         }
+
         private void frmCourseInfo_Load(object sender, EventArgs e)
         {
-            if (studentOrLecturer == "l")
-            {
-                btnStudyPlan.Visible = false;
-            }
-            else
+            // If ID does not start with L then student has logged in
+            if (!LoggedInStudent.ID.StartsWith("L"))
             {
                 btnModify.Visible = false;
+            }
+
+            // Else lecturer has logged in
+            else
+            {
+                btnStudyPlan.Visible = false;
             }
         }
         #region Load Category and Course
@@ -274,7 +280,7 @@ namespace UI_WinForms
         private void btnStudyPlan_Click(object sender, EventArgs e)
         {
             // Plan of study form declared and instantiated
-            frmPlanOfStudy plan = new frmPlanOfStudy();
+            frmPlanOfStudy plan = new frmPlanOfStudy(LoggedInStudent.ID, LoggedInStudent.Name);
             // Plan of study form is shown on screen
             plan.Show();
         }

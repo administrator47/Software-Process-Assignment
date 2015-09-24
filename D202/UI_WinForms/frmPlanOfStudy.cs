@@ -13,14 +13,19 @@ namespace UI_WinForms
 {
     public partial class frmPlanOfStudy : Form
     {
-        public frmPlanOfStudy()
+        Student LoggedInStudent = new Student();
+
+        public frmPlanOfStudy(string studID, string studName)
         {
             InitializeComponent();
+            LoggedInStudent = new Student(studID,studName);
         }
 
         private void frmPlanOfStudy_Load(object sender, EventArgs e)
         {
-            //TODO 
+            lblStudentID.Text = LoggedInStudent.ID;
+            lblWelcome.Text = "Welcome, " + LoggedInStudent.Name;
+            //TODO SQL QUERY HERE
             // If no plan made then load default
             SetupCourses();
             // Else setup previous

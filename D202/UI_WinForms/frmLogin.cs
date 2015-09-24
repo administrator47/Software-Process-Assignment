@@ -48,17 +48,16 @@ namespace UI_WinForms
 
             DatabaseConnector qwd = new DatabaseConnector();
 
-            qwd.LoginConnect("db_owner.SELECT_ID",tbxUsername.Text,tbxPassword.Text);
+            List<string> test = qwd.LoginConnect("db_owner.SELECT_ID",tbxUsername.Text,tbxPassword.Text);
 
-            // If the password and the username match then
-            if ((tbxPassword.Text == "l" && tbxUsername.Text == "l") || (tbxPassword.Text == "s" && tbxUsername.Text == "s"))
+            // If the count of test is greater than 0 then that means something was returned
+            if (test.Count() > 0)
             {
                 // If login code returns results
                 this.Hide();
-                frmCourseInfo courseInfo = new frmCourseInfo(studLecy);
+                frmCourseInfo courseInfo = new frmCourseInfo(test[0], test[1]);
                 courseInfo.ShowDialog();
                 this.Close();
-                //TODO: Need to make an account object (or student)
             }
 
             else
