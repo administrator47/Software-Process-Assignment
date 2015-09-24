@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace UI_WinForms.Classes
 {
-    class Student
+    public class Student
     {
+        public Student (string id, string name)
+        {
+            ID = id;
+            Name = name;
+        }
+
+        public Student()
+        {
+
+        }
+
+        public string ID { get; set; }
+        public string Name { get; set; }
     }
 }

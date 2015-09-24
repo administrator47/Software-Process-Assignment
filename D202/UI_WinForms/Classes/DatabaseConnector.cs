@@ -10,6 +10,11 @@ namespace UI_WinForms.Classes
 {
     class DatabaseConnector
     {
+        public DatabaseConnector ()
+        {
+
+        }
+
         public SqlCommand SQLConnect(string sqlCommand)
         {
             // Create the connection to the resource!
@@ -28,6 +33,49 @@ namespace UI_WinForms.Classes
 
                 return command;
 
+            }
+        }
+
+        public List<string> LoginConnect(string sqlCommand, string id, string password)
+        {
+            // Create the connection to the resource!
+            // This is the connection, that is established and
+            // will be available throughout this block.
+            using (SqlConnection conn = new SqlConnection())
+            {
+                // Create the connectionString
+                // Trusted_Connection is used to denote the connection uses Windows Authentication
+                conn.ConnectionString = "Data Source=tfs;Initial Catalog=study3;Integrated Security=True";
+                
+                // Create the command
+                SqlCommand command = new SqlCommand(sqlCommand, conn);
+
+                // set procedure
+                command.CommandType = CommandType.StoredProcedure;
+
+                //// Add the parameters.
+                command.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                command.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
+
+                conn.Open();
+                command.ExecuteNonQuery();
+
+                List<string> fill = new List<string>();
+
+                // Use a SqlDataReader to read the results from the SqlCommand
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    foreach (IDataRecord record in reader)
+                    {
+                        string[] returnArray = (ReadSingleRow((IDataRecord)reader));
+
+                        fill.AddRange(returnArray);
+                    }
+                }
+
+                //return
+                return fill;
+                
             }
         }
 

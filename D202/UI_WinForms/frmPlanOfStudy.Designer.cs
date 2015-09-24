@@ -32,7 +32,6 @@
             this.lblCompulsoryPapers = new System.Windows.Forms.Label();
             this.lblYourID = new System.Windows.Forms.Label();
             this.lblStudentID = new System.Windows.Forms.Label();
-            this.lblChoosePapers = new System.Windows.Forms.Label();
             this.cbxOne = new System.Windows.Forms.ComboBox();
             this.cbxTwo = new System.Windows.Forms.ComboBox();
             this.cbxThree = new System.Windows.Forms.ComboBox();
@@ -46,8 +45,16 @@
             this.rdoYearThree = new System.Windows.Forms.RadioButton();
             this.rdoYearTwo = new System.Windows.Forms.RadioButton();
             this.lbxCompulsory = new System.Windows.Forms.ListBox();
+            this.gbxCourses = new System.Windows.Forms.GroupBox();
+            this.lblWelcome = new System.Windows.Forms.Label();
+            this.btnDeleteAll = new System.Windows.Forms.Button();
+            this.btnAddToPlan = new System.Windows.Forms.Button();
+            this.gbxStudyPlan = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.gbxSemester.SuspendLayout();
             this.gbxYear.SuspendLayout();
+            this.gbxCourses.SuspendLayout();
+            this.gbxStudyPlan.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblPlanOfStudy
@@ -75,7 +82,7 @@
             // lblYourID
             // 
             this.lblYourID.AutoSize = true;
-            this.lblYourID.Location = new System.Drawing.Point(491, 77);
+            this.lblYourID.Location = new System.Drawing.Point(30, 25);
             this.lblYourID.Name = "lblYourID";
             this.lblYourID.Size = new System.Drawing.Size(46, 13);
             this.lblYourID.TabIndex = 0;
@@ -85,25 +92,16 @@
             // 
             this.lblStudentID.AutoSize = true;
             this.lblStudentID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblStudentID.Location = new System.Drawing.Point(581, 77);
+            this.lblStudentID.Location = new System.Drawing.Point(82, 25);
             this.lblStudentID.Name = "lblStudentID";
             this.lblStudentID.Size = new System.Drawing.Size(44, 13);
             this.lblStudentID.TabIndex = 0;
             this.lblStudentID.Text = "ID Here";
             // 
-            // lblChoosePapers
-            // 
-            this.lblChoosePapers.AutoSize = true;
-            this.lblChoosePapers.Location = new System.Drawing.Point(514, 180);
-            this.lblChoosePapers.Name = "lblChoosePapers";
-            this.lblChoosePapers.Size = new System.Drawing.Size(85, 13);
-            this.lblChoosePapers.TabIndex = 0;
-            this.lblChoosePapers.Text = "Choose Paper(s)";
-            // 
             // cbxOne
             // 
             this.cbxOne.FormattingEnabled = true;
-            this.cbxOne.Location = new System.Drawing.Point(441, 213);
+            this.cbxOne.Location = new System.Drawing.Point(20, 42);
             this.cbxOne.Name = "cbxOne";
             this.cbxOne.Size = new System.Drawing.Size(221, 21);
             this.cbxOne.TabIndex = 4;
@@ -111,7 +109,7 @@
             // cbxTwo
             // 
             this.cbxTwo.FormattingEnabled = true;
-            this.cbxTwo.Location = new System.Drawing.Point(441, 264);
+            this.cbxTwo.Location = new System.Drawing.Point(20, 93);
             this.cbxTwo.Name = "cbxTwo";
             this.cbxTwo.Size = new System.Drawing.Size(221, 21);
             this.cbxTwo.TabIndex = 5;
@@ -119,14 +117,14 @@
             // cbxThree
             // 
             this.cbxThree.FormattingEnabled = true;
-            this.cbxThree.Location = new System.Drawing.Point(441, 319);
+            this.cbxThree.Location = new System.Drawing.Point(20, 148);
             this.cbxThree.Name = "cbxThree";
             this.cbxThree.Size = new System.Drawing.Size(221, 21);
             this.cbxThree.TabIndex = 6;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(762, 458);
+            this.btnSave.Location = new System.Drawing.Point(643, 487);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 35);
             this.btnSave.TabIndex = 7;
@@ -136,7 +134,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(641, 459);
+            this.btnRefresh.Location = new System.Drawing.Point(45, 37);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(100, 35);
             this.btnRefresh.TabIndex = 8;
@@ -146,12 +144,13 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(517, 459);
+            this.btnDelete.Location = new System.Drawing.Point(593, 446);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(100, 35);
             this.btnDelete.TabIndex = 9;
-            this.btnDelete.Text = "Delete";
+            this.btnDelete.Text = "Delete Course";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // gbxSemester
             // 
@@ -227,23 +226,83 @@
             this.lbxCompulsory.Size = new System.Drawing.Size(150, 160);
             this.lbxCompulsory.TabIndex = 12;
             // 
+            // gbxCourses
+            // 
+            this.gbxCourses.Controls.Add(this.cbxThree);
+            this.gbxCourses.Controls.Add(this.cbxTwo);
+            this.gbxCourses.Controls.Add(this.cbxOne);
+            this.gbxCourses.Location = new System.Drawing.Point(251, 142);
+            this.gbxCourses.Name = "gbxCourses";
+            this.gbxCourses.Size = new System.Drawing.Size(267, 205);
+            this.gbxCourses.TabIndex = 13;
+            this.gbxCourses.TabStop = false;
+            this.gbxCourses.Text = "Select Course(s)";
+            // 
+            // lblWelcome
+            // 
+            this.lblWelcome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.Location = new System.Drawing.Point(337, 54);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(0, 13);
+            this.lblWelcome.TabIndex = 15;
+            // 
+            // btnDeleteAll
+            // 
+            this.btnDeleteAll.Location = new System.Drawing.Point(700, 446);
+            this.btnDeleteAll.Name = "btnDeleteAll";
+            this.btnDeleteAll.Size = new System.Drawing.Size(100, 35);
+            this.btnDeleteAll.TabIndex = 9;
+            this.btnDeleteAll.Text = "Delete All";
+            this.btnDeleteAll.UseVisualStyleBackColor = true;
+            this.btnDeleteAll.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnAddToPlan
+            // 
+            this.btnAddToPlan.Location = new System.Drawing.Point(328, 374);
+            this.btnAddToPlan.Name = "btnAddToPlan";
+            this.btnAddToPlan.Size = new System.Drawing.Size(100, 35);
+            this.btnAddToPlan.TabIndex = 16;
+            this.btnAddToPlan.Text = "Add To Plan";
+            this.btnAddToPlan.UseVisualStyleBackColor = true;
+            this.btnAddToPlan.Click += new System.EventHandler(this.btnAddToPlan_Click);
+            // 
+            // gbxStudyPlan
+            // 
+            this.gbxStudyPlan.Controls.Add(this.textBox1);
+            this.gbxStudyPlan.Controls.Add(this.lblStudentID);
+            this.gbxStudyPlan.Controls.Add(this.lblYourID);
+            this.gbxStudyPlan.Location = new System.Drawing.Point(551, 98);
+            this.gbxStudyPlan.Name = "gbxStudyPlan";
+            this.gbxStudyPlan.Size = new System.Drawing.Size(282, 334);
+            this.gbxStudyPlan.TabIndex = 17;
+            this.gbxStudyPlan.TabStop = false;
+            this.gbxStudyPlan.Text = "Study Plan";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(20, 68);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(237, 20);
+            this.textBox1.TabIndex = 1;
+            // 
             // frmPlanOfStudy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 506);
+            this.ClientSize = new System.Drawing.Size(875, 532);
+            this.Controls.Add(this.gbxStudyPlan);
+            this.Controls.Add(this.btnAddToPlan);
+            this.Controls.Add(this.lblWelcome);
+            this.Controls.Add(this.gbxCourses);
             this.Controls.Add(this.lbxCompulsory);
             this.Controls.Add(this.gbxYear);
             this.Controls.Add(this.gbxSemester);
+            this.Controls.Add(this.btnDeleteAll);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.cbxThree);
-            this.Controls.Add(this.cbxTwo);
-            this.Controls.Add(this.cbxOne);
-            this.Controls.Add(this.lblChoosePapers);
-            this.Controls.Add(this.lblStudentID);
-            this.Controls.Add(this.lblYourID);
             this.Controls.Add(this.lblCompulsoryPapers);
             this.Controls.Add(this.lblPlanOfStudy);
             this.Name = "frmPlanOfStudy";
@@ -254,6 +313,9 @@
             this.gbxSemester.PerformLayout();
             this.gbxYear.ResumeLayout(false);
             this.gbxYear.PerformLayout();
+            this.gbxCourses.ResumeLayout(false);
+            this.gbxStudyPlan.ResumeLayout(false);
+            this.gbxStudyPlan.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,7 +327,6 @@
         private System.Windows.Forms.Label lblCompulsoryPapers;
         private System.Windows.Forms.Label lblYourID;
         private System.Windows.Forms.Label lblStudentID;
-        private System.Windows.Forms.Label lblChoosePapers;
         private System.Windows.Forms.ComboBox cbxOne;
         private System.Windows.Forms.ComboBox cbxTwo;
         private System.Windows.Forms.ComboBox cbxThree;
@@ -279,5 +340,11 @@
         private System.Windows.Forms.RadioButton rdoYearThree;
         private System.Windows.Forms.RadioButton rdoYearTwo;
         private System.Windows.Forms.ListBox lbxCompulsory;
+        private System.Windows.Forms.GroupBox gbxCourses;
+        private System.Windows.Forms.Label lblWelcome;
+        private System.Windows.Forms.Button btnDeleteAll;
+        private System.Windows.Forms.Button btnAddToPlan;
+        private System.Windows.Forms.GroupBox gbxStudyPlan;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

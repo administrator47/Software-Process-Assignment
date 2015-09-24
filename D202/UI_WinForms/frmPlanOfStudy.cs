@@ -13,14 +13,19 @@ namespace UI_WinForms
 {
     public partial class frmPlanOfStudy : Form
     {
-        public frmPlanOfStudy()
+        Student LoggedInStudent = new Student();
+
+        public frmPlanOfStudy(string studID, string studName)
         {
             InitializeComponent();
+            LoggedInStudent = new Student(studID,studName);
         }
 
         private void frmPlanOfStudy_Load(object sender, EventArgs e)
         {
-            //TODO 
+            lblStudentID.Text = LoggedInStudent.ID;
+            lblWelcome.Text = "Welcome, " + LoggedInStudent.Name;
+            //TODO SQL QUERY HERE
             // If no plan made then load default
             SetupCourses();
             // Else setup previous
@@ -34,7 +39,7 @@ namespace UI_WinForms
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-
+            SetupCourses();
         }
 
         private void SetupCourses ()
@@ -50,15 +55,18 @@ namespace UI_WinForms
                 year = 2;
             }
 
-            // Array of course objects retrieved from database based on year and semester
-            Course[] courseList = Course.LoadIDs(year,semester);
+            // list of course objects retrieved from database based on year and semester
+            List<Course> courseList = new List<Course>();
+            courseList.AddRange(Course.LoadIDs(year, semester));
+            courseList.AddRange(Course.LoadIDs(year, 3));
 
             // All compulsory Course objects are loaded into a new course array
             Course[] compulsory = (from comp in courseList
                                    where comp.Compulsory == true
                                    select comp).ToArray();
 
-            // Course array is added to the listbox
+            // Listbox is cleared then course array is added
+            lbxCompulsory.Items.Clear();
             lbxCompulsory.Items.AddRange(compulsory);
 
             // All non-compulsory Course objects are loaded into a new course array
@@ -66,11 +74,57 @@ namespace UI_WinForms
                                    where comp.Compulsory == false
                                    select comp).ToArray();
 
-            // Course array is added to the listbox
-            cbxOne.Items.AddRange(nonCompulsory);
-            cbxTwo.Items.AddRange(nonCompulsory);
-            cbxThree.Items.AddRange(nonCompulsory);
+            // Foreach loop goes through every ComboBox, clears the items then adds the range on non-compulsory course items
+            foreach(ComboBox c in gbxCourses.Controls)
+            {
+                c.Items.Clear();
+                c.Items.AddRange(nonCompulsory);
+            }
+
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dr = MessageBox.Show("Are you sure you want to delete you plan of study?", "Warning!", MessageBoxButtons.YesNo);
+
+                if(dr.Equals(DialogResult.Yes))
+                {
+                   // Delete textbox text
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ConstructTextboxes()
+        {
+            try 
+            {
+                // Clear the textbox
+              
+
+                // Setup textbox
+             //   tbxCoursesOutput.Text = "STUDYPLAN: \n \nYear Two:\n" /*Compulsory*/+ +"\n" + +"\n" + +"\n" + +"\n";
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        private void btnAddToPlan_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
 
     }
