@@ -34,6 +34,7 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fName != value;
                 fName = value;
             }
         }
@@ -49,18 +50,23 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fDescription != value;
                 fDescription = value;
             }
         }
 
         public override void Refresh()
         {
-            object[] sql_params = { ID };
+            var DB_ID = EffectiveID;
+            object[] sql_params = { DB_ID };
             var dr = ExecuteReader(String.Format("select name, description from {0} where id=@0", TableName()), sql_params);
             try
             {
                 if (dr.HasRows)
                 {
+                    SetRecordedID(DB_ID);
+                    SetID(DB_ID);
+
                     dr.Read();
                     fName = dr.GetString(0);
                     fDescription = dr.GetString(1);
@@ -95,7 +101,7 @@ namespace UI_WinForms.Classes
                 sql_query = String.Format("update {0} set name=@1, description=@2 where id=@0", TableName());
             }
             ExecuteNonQuery(sql_query, sql_params);
-            fRecordedID = ID;
+            SetRecordedID(ID);
             loaded = true;
             dirty = false;
         }

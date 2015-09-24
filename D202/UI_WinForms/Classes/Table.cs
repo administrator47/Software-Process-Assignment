@@ -34,6 +34,12 @@ namespace UI_WinForms.Classes
                 for (int i = 0; i < sql_params.Length; i++)
                 {
                     var sql_param = new SqlParameter(i.ToString(), sql_params[i]);
+                    //if (sql_param.Value == null)
+                    //{
+                    //    sql_param.IsNullable = true;
+                    //    sql_param.SqlValue = DBNull.Value;
+                    //}
+
                     cmd.Parameters.Add(sql_param);
                 }
             }
@@ -53,9 +59,23 @@ namespace UI_WinForms.Classes
         }
 
         protected bool loaded = false;
+        public bool Loaded
+        {
+            get { return loaded; }
+        }
+
         protected bool dirty = false;
+        public bool Dirty
+        {
+            get { return dirty; }
+        }
 
         protected string fRecordedID;
+        protected virtual void SetRecordedID(string id)
+        {
+            fRecordedID = id;
+        }
+
         public string RecordedID
         {
             get { return fRecordedID; }
@@ -77,6 +97,14 @@ namespace UI_WinForms.Classes
             {
                 dirty = dirty || fID != value;
                 SetID(value);
+            }
+        }
+
+        public string EffectiveID
+        {
+            get
+            {
+                return (RecordedID != null ? RecordedID : ID);
             }
         }
 
@@ -141,7 +169,12 @@ namespace UI_WinForms.Classes
                 {
                     var id = dr.GetString(0);
                     T obj = Table<T>.FromID(id);
-                    (obj as Table<T>).fRecordedID = id;
+                    if (obj.Dirty && obj.RecordedID == null)
+                    {
+                        // ID clash with new unsaved record.
+                        // FIXME: Mutable primary database keys cause major headaches!
+                    }
+                    (obj as Table<T>).SetRecordedID(id);
                     result.Add(obj);
                 }
             }
@@ -162,15 +195,31 @@ namespace UI_WinForms.Classes
         public Table(string id)
             : base(id)
         {
-            rows[id] = this;
+            rows.Add(id, this);
+        }
+
+        protected override void SetRecordedID(string id)
+        {
+            var old_id = EffectiveID;
+            base.SetRecordedID(id);
+            var new_id = EffectiveID;
+            if (old_id != new_id)
+            {
+                rows.Remove(old_id);
+                rows.Add(new_id, this);
+            }
         }
 
         protected override void SetID(string id)
         {
-            var current_id = ID;
+            var old_id = EffectiveID;
             base.SetID(id);
-            rows.Remove(current_id);
-            rows.Add(id, this);
+            var new_id = EffectiveID;
+            if (old_id != new_id)
+            {
+                rows.Remove(old_id);
+                rows.Add(new_id, this);
+            }
         }
 
         public override void Refresh()
@@ -184,7 +233,7 @@ namespace UI_WinForms.Classes
             {
                 object[] sql_params = { RecordedID, ID };
                 ExecuteNonQuery(String.Format("update {0} set id=@1 where id=@0", TableName()), sql_params);
-                fRecordedID = ID;
+                SetRecordedID(ID);
             }
         }
     }

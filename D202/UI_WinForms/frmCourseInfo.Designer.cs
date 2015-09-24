@@ -39,13 +39,13 @@
             this.lblPaperPrerequisite = new System.Windows.Forms.Label();
             this.tbxSemester = new System.Windows.Forms.TextBox();
             this.lblSemester = new System.Windows.Forms.Label();
-            this.tbxPaperPrerequisite = new System.Windows.Forms.TextBox();
-            this.tbxCategory = new System.Windows.Forms.TextBox();
+            this.tbxPaperPrerequisite = new System.Windows.Forms.ComboBox();
+            this.tbxCategory = new System.Windows.Forms.ComboBox();
             this.lblCategory = new System.Windows.Forms.Label();
             this.gbxLecturer = new System.Windows.Forms.GroupBox();
             this.tbxLecturerEmail = new System.Windows.Forms.TextBox();
             this.tbxLecturerPhone = new System.Windows.Forms.TextBox();
-            this.tbxLecturerName = new System.Windows.Forms.TextBox();
+            this.tbxLecturerName = new System.Windows.Forms.ComboBox();
             this.lblLecturerInfo = new System.Windows.Forms.Label();
             this.tbxYear = new System.Windows.Forms.TextBox();
             this.lblYear = new System.Windows.Forms.Label();
@@ -138,11 +138,11 @@
             // 
             // tbxPaperID
             // 
-            this.tbxPaperID.Enabled = false;
             this.tbxPaperID.Location = new System.Drawing.Point(357, 37);
             this.tbxPaperID.Name = "tbxPaperID";
             this.tbxPaperID.Size = new System.Drawing.Size(46, 20);
             this.tbxPaperID.TabIndex = 15;
+            this.tbxPaperID.TextChanged += new System.EventHandler(this.tbxPaperID_TextChanged);
             // 
             // lblPaperPrerequisite
             // 
@@ -155,13 +155,13 @@
             // 
             // tbxSemester
             // 
-            this.tbxSemester.Enabled = false;
             this.tbxSemester.Location = new System.Drawing.Point(205, 102);
             this.tbxSemester.Name = "tbxSemester";
             this.tbxSemester.ReadOnly = true;
             this.tbxSemester.Size = new System.Drawing.Size(30, 20);
             this.tbxSemester.TabIndex = 13;
             this.tbxSemester.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxSemester.TextChanged += new System.EventHandler(this.tbxSemester_TextChanged);
             // 
             // lblSemester
             // 
@@ -174,21 +174,25 @@
             // 
             // tbxPaperPrerequisite
             // 
+            this.tbxPaperPrerequisite.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tbxPaperPrerequisite.Enabled = false;
             this.tbxPaperPrerequisite.Location = new System.Drawing.Point(81, 145);
             this.tbxPaperPrerequisite.Name = "tbxPaperPrerequisite";
-            this.tbxPaperPrerequisite.ReadOnly = true;
-            this.tbxPaperPrerequisite.Size = new System.Drawing.Size(193, 20);
+            this.tbxPaperPrerequisite.Size = new System.Drawing.Size(193, 21);
             this.tbxPaperPrerequisite.TabIndex = 11;
+            this.tbxPaperPrerequisite.SelectedIndexChanged += new System.EventHandler(this.tbxPaperPrerequisite_SelectedIndexChanged);
+            this.tbxPaperPrerequisite.TextChanged += new System.EventHandler(this.tbxPaperPrerequisite_TextChanged);
             // 
             // tbxCategory
             // 
+            this.tbxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tbxCategory.Enabled = false;
             this.tbxCategory.Location = new System.Drawing.Point(81, 76);
             this.tbxCategory.Name = "tbxCategory";
-            this.tbxCategory.ReadOnly = true;
-            this.tbxCategory.Size = new System.Drawing.Size(193, 20);
+            this.tbxCategory.Size = new System.Drawing.Size(193, 21);
             this.tbxCategory.TabIndex = 9;
+            this.tbxCategory.SelectedIndexChanged += new System.EventHandler(this.tbxCategory_SelectedIndexChanged);
+            this.tbxCategory.TextChanged += new System.EventHandler(this.tbxCategory_TextChanged);
             // 
             // lblCategory
             // 
@@ -213,7 +217,6 @@
             // 
             // tbxLecturerEmail
             // 
-            this.tbxLecturerEmail.Enabled = false;
             this.tbxLecturerEmail.Location = new System.Drawing.Point(6, 96);
             this.tbxLecturerEmail.Name = "tbxLecturerEmail";
             this.tbxLecturerEmail.ReadOnly = true;
@@ -222,7 +225,6 @@
             // 
             // tbxLecturerPhone
             // 
-            this.tbxLecturerPhone.Enabled = false;
             this.tbxLecturerPhone.Location = new System.Drawing.Point(6, 70);
             this.tbxLecturerPhone.Name = "tbxLecturerPhone";
             this.tbxLecturerPhone.ReadOnly = true;
@@ -231,12 +233,13 @@
             // 
             // tbxLecturerName
             // 
+            this.tbxLecturerName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tbxLecturerName.Enabled = false;
             this.tbxLecturerName.Location = new System.Drawing.Point(6, 44);
             this.tbxLecturerName.Name = "tbxLecturerName";
-            this.tbxLecturerName.ReadOnly = true;
-            this.tbxLecturerName.Size = new System.Drawing.Size(157, 20);
+            this.tbxLecturerName.Size = new System.Drawing.Size(157, 21);
             this.tbxLecturerName.TabIndex = 7;
+            this.tbxLecturerName.SelectedIndexChanged += new System.EventHandler(this.tbxLecturerName_SelectedIndexChanged);
             // 
             // lblLecturerInfo
             // 
@@ -249,13 +252,13 @@
             // 
             // tbxYear
             // 
-            this.tbxYear.Enabled = false;
             this.tbxYear.Location = new System.Drawing.Point(113, 102);
             this.tbxYear.Name = "tbxYear";
             this.tbxYear.ReadOnly = true;
             this.tbxYear.Size = new System.Drawing.Size(30, 20);
             this.tbxYear.TabIndex = 5;
             this.tbxYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxYear.TextChanged += new System.EventHandler(this.tbxYear_TextChanged);
             // 
             // lblYear
             // 
@@ -268,7 +271,6 @@
             // 
             // tbxDescription
             // 
-            this.tbxDescription.Enabled = false;
             this.tbxDescription.Location = new System.Drawing.Point(25, 203);
             this.tbxDescription.Multiline = true;
             this.tbxDescription.Name = "tbxDescription";
@@ -276,6 +278,7 @@
             this.tbxDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbxDescription.Size = new System.Drawing.Size(247, 83);
             this.tbxDescription.TabIndex = 3;
+            this.tbxDescription.TextChanged += new System.EventHandler(this.tbxDescription_TextChanged);
             // 
             // lblDescription
             // 
@@ -290,12 +293,12 @@
             // 
             // tbxPaperName
             // 
-            this.tbxPaperName.Enabled = false;
             this.tbxPaperName.Location = new System.Drawing.Point(81, 37);
             this.tbxPaperName.Name = "tbxPaperName";
             this.tbxPaperName.ReadOnly = true;
             this.tbxPaperName.Size = new System.Drawing.Size(193, 20);
             this.tbxPaperName.TabIndex = 1;
+            this.tbxPaperName.TextChanged += new System.EventHandler(this.tbxPaperName_TextChanged);
             // 
             // lblPaperName
             // 
@@ -376,13 +379,13 @@
         private System.Windows.Forms.TextBox tbxYear;
         private System.Windows.Forms.TextBox tbxSemester;
         private System.Windows.Forms.Label lblSemester;
-        private System.Windows.Forms.TextBox tbxPaperPrerequisite;
-        private System.Windows.Forms.TextBox tbxCategory;
+        private System.Windows.Forms.ComboBox tbxPaperPrerequisite;
+        private System.Windows.Forms.ComboBox tbxCategory;
         private System.Windows.Forms.Label lblCategory;
         private System.Windows.Forms.GroupBox gbxLecturer;
         private System.Windows.Forms.TextBox tbxLecturerEmail;
         private System.Windows.Forms.TextBox tbxLecturerPhone;
-        private System.Windows.Forms.TextBox tbxLecturerName;
+        private System.Windows.Forms.ComboBox tbxLecturerName;
         private System.Windows.Forms.Label lblLecturerInfo;
         private System.Windows.Forms.Label lblPaperPrerequisite;
         private System.Windows.Forms.Button btnModify;

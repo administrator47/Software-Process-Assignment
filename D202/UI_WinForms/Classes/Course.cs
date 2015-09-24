@@ -56,6 +56,7 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fName != value;
                 fName = value;
             }
         }
@@ -70,6 +71,7 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fDescription != value;
                 fDescription = value;
             }
         }
@@ -84,6 +86,7 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fCourseCategory != value;
                 fCourseCategory = value;
             }
         }
@@ -98,6 +101,7 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fPrerequisite != value;
                 fPrerequisite = value;
             }
         }
@@ -112,6 +116,7 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fCourseLecturer != value;
                 fCourseLecturer = value;
             }
         }
@@ -126,6 +131,7 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fCompulsory != value;
                 fCompulsory = value;
             }
         }
@@ -140,6 +146,7 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fYear != value;
                 fYear = value;
             }
         }
@@ -154,13 +161,15 @@ namespace UI_WinForms.Classes
             }
             set
             {
+                dirty = dirty || fSemester != value;
                 fSemester = value;
             }
         }
 
         public override void Refresh()
         {
-            object[] sql_params = { ID };
+            var DB_ID = EffectiveID;
+            object[] sql_params = { DB_ID };
             var dr = ExecuteReader(String.Format(
                 "select name, category_id, prerequisite, lecture_id, compulsory, description, year, semester " +
                 "from {0} where id=@0",
@@ -170,11 +179,31 @@ namespace UI_WinForms.Classes
             {
                 if (dr.HasRows)
                 {
+                    SetRecordedID(DB_ID);
+                    SetID(DB_ID);
+
                     dr.Read();
                     fName = dr.GetString(0);
                     fCourseCategory = Category.FromID(dr.GetString(1));
-                    if (!dr.IsDBNull(2)) fPrerequisite = Course.FromID(dr.GetString(2));
-                    if (!dr.IsDBNull(3)) fCourseLecturer = Lecturer.FromID(dr.GetString(3));
+
+                    if (!dr.IsDBNull(2))
+                    {
+                        fPrerequisite = Course.FromID(dr.GetString(2));
+                    }
+                    else
+                    {
+                        fPrerequisite = null;
+                    }
+
+                    if (!dr.IsDBNull(3))
+                    {
+                        fCourseLecturer = Lecturer.FromID(dr.GetString(3));
+                    }
+                    else
+                    {
+                        fCourseLecturer = null;
+                    }
+
                     fCompulsory = (dr.GetString(4).ToUpper()[0] == 'Y');
                     fDescription = dr.GetString(5);
                     fYear = dr.GetInt32(6);
@@ -198,7 +227,11 @@ namespace UI_WinForms.Classes
             if (!dirty) return;
             base.Update();
 
-            object[] sql_params = { ID, Name, CourseCategory.ID, Prerequisite.ID, CourseLecturer.ID, Compulsory ? "Y" : "N", Description, Year, Semester };
+            var CategoryID = (CourseCategory == null ? DBNull.Value : (object)CourseCategory.ID);
+            var PrerequisiteID = (Prerequisite == null ? DBNull.Value : (object)Prerequisite.ID);
+            var LecturerID = (CourseLecturer == null ? DBNull.Value : (object)CourseLecturer.ID);
+
+            object[] sql_params = { ID, Name, CategoryID, PrerequisiteID, LecturerID, Compulsory ? "Y" : "N", Description, Year, Semester };
 
             string sql_query;
             if (RecordedID == null)
@@ -220,14 +253,14 @@ namespace UI_WinForms.Classes
                 );
             }
             ExecuteNonQuery(sql_query, sql_params);
-            fRecordedID = ID;
+            SetRecordedID(ID);
             loaded = true;
             dirty = false;
         }
 
         public override string ToString()
         {
-            return Name;
+            return String.Format("{0} {1}", ID, Name);
         }
     }
 }
